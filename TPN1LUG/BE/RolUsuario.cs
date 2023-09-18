@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL
+namespace BE
 {
-    public class Supervisor : Usuario
+    public enum RolUsuario
     {
-        public List<Profesor> ListaProfesores { get; set; }
+        Supervisor = 1,
+        Profesor = 2,
+        Cliente = 3
     }
 }

@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Negocio
+namespace BE
 {
-    public class Class1
+    public class Tarjeta
     {
+        public int Tarjeta_ID { get; set; }
+        public Cuota oCuota { get; set; }
     }
 }

@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL
+namespace BE
 {
-    public class Profesor : Usuario
+    public class Empleado : Usuario
     {
-        
+        public string Contraseña { get; set; }
     }
 }

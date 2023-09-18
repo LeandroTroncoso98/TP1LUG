@@ -4,15 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL
+namespace BE
 {
-    public class Alumno
+    public class Cliente : Usuario
     {
-        public int Alumno_ID { get; set; }
-        public string Nombre { get; set; }
-        public string Apellido { get; set; }
+        public int Telefono { get; set; }
+        public float Peso { get; set; }
         public DateTime Fecha_Nacimiento { get; set; }
-        public int Edad { get; set; }
         public Tarjeta oTarjeta { get; set; }
+        public Rutina oRutina { get; set; }
     }
 }

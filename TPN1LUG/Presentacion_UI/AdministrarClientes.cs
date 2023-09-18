@@ -10,13 +10,11 @@ using System.Windows.Forms;
 
 namespace Presentacion_UI
 {
-    public partial class SEFI : Form
+    public partial class AdministrarClientes : Form
     {
-        public SEFI()
+        public AdministrarClientes()
         {
             InitializeComponent();
         }
-
-        
     }
 }

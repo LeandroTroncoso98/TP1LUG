@@ -1,0 +1,9 @@
+C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\DAL\bin\Debug\DAL.dll
+C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\DAL\bin\Debug\DAL.pdb
+C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\DAL\bin\Debug\BE.dll
+C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\DAL\bin\Debug\BE.pdb
+C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\DAL\obj\Debug\DAL.csproj.CopyComplete
+C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\DAL\obj\Debug\DAL.dll
+C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\DAL\obj\Debug\DAL.pdb

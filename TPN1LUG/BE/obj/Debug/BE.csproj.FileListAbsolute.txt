@@ -1,0 +1,6 @@
+C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\BE\bin\Debug\BE.dll
+C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\BE\bin\Debug\BE.pdb
+C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\BE\obj\Debug\BE.csproj.AssemblyReference.cache
+C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\BE\obj\Debug\BE.csproj.CoreCompileInputs.cache
+C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\BE\obj\Debug\BE.dll
+C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\BE\obj\Debug\BE.pdb

@@ -1,0 +1,11 @@
+C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Negocio\bin\Debug\Negocio.dll
+C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Negocio\bin\Debug\Negocio.pdb
+C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Negocio\bin\Debug\BE.dll
+C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Negocio\bin\Debug\DAL.dll
+C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Negocio\bin\Debug\BE.pdb
+C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Negocio\bin\Debug\DAL.pdb
+C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Negocio\obj\Debug\Negocio.csproj.AssemblyReference.cache
+C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Negocio\obj\Debug\Negocio.csproj.CoreCompileInputs.cache
+C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Negocio\obj\Debug\Negocio.csproj.CopyComplete
+C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Negocio\obj\Debug\Negocio.dll
+C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Negocio\obj\Debug\Negocio.pdb

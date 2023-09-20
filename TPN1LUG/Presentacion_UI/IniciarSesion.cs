@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Utility;
 
 namespace Presentacion_UI
 {
@@ -16,27 +17,31 @@ namespace Presentacion_UI
         public IniciarSesion()
         {
             InitializeComponent();
-            oBLLEmpleado = new BLLEmpleado();
-
+            oDLLEmpleado = new BLLEmpleado();
+            
         }
-        BLLEmpleado oBLLEmpleado;
-
+        private BLLEmpleado oDLLEmpleado;
         private void btnIniciarSesion_Click(object sender, EventArgs e)
         {
-            try
+            if (VerificadorCampos.VerificarCampos(txtEmail, txtContra))
             {
-                if (!string.IsNullOrEmpty(txtContra.Text) && !string.IsNullOrEmpty(txtEmail.Text))
+                if (oDLLEmpleado.IniciarSesion(txtEmail.Text, txtContra.Text))
                 {
-                    if (oBLLEmpleado.IniciarSesion(txtEmail.Text, txtContra.Text))
-                    {
-                        AdministrarClientes admClientes = new AdministrarClientes();
-
-                        admClientes.Show();
-                    }
-                    else MessageBox.Show("Usuario Incorrecto");
+                    Inicio pantallaPrincipal = new Inicio();
+                    pantallaPrincipal.MdiParent = this;
+                    pantallaPrincipal.Show();
                 }
+                else { MessageBox.Show("Usuario o contraseña incorrectos, por favor intente nuevamente", "Error al iniciar Sesion", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
             }
-            catch(Exception ex) { throw ex; }
+            else
+            {
+                MessageBox.Show("Debe completar los campos para continuar", "Error al inicar sesion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void blaBlaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("bla bla");
         }
     }
 }

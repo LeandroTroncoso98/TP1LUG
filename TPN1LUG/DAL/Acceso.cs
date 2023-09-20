@@ -32,16 +32,25 @@ namespace DAL
         public bool Escribir(string ConsultaSQL)
         {
             oCnn.Open();
+            SqlTransaction tx;
+            tx = oCnn.BeginTransaction();
+
             cmd = new SqlCommand();
             cmd.CommandType = CommandType.Text;
             cmd.Connection = oCnn;
             cmd.CommandText = ConsultaSQL;
+            cmd.Transaction = tx;
             try
             {
                 int respuesta = cmd.ExecuteNonQuery();
+                tx.Commit();
                 return true;
             }
-            catch (SqlException ex) { throw ex; }
+            catch (SqlException ex)
+            {
+                tx.Rollback();
+                throw ex;
+            }
             finally { oCnn.Close(); }
         }
         public DataSet LeerTablas(string ConsultaSQL)
@@ -52,8 +61,8 @@ namespace DAL
                 SqlDataAdapter da = new SqlDataAdapter(ConsultaSQL, oCnn);
                 da.Fill(ds);
             }
-            catch(SqlException ex) { throw ex; }
-            catch(Exception ex) { throw ex; }
+            catch (SqlException ex) { throw ex; }
+            catch (Exception ex) { throw ex; }
             finally { oCnn.Close(); }
             return ds;
         }

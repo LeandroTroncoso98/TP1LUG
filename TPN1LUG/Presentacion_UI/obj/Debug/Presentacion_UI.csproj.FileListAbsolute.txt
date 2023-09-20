@@ -7,7 +7,6 @@ C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Pra
 C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Presentacion_UI\bin\Debug\Presentacion_UI.pdb
 C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Presentacion_UI\obj\Debug\Presentacion_UI.exe
 C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Presentacion_UI\obj\Debug\Presentacion_UI.pdb
-C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Presentacion_UI\obj\Debug\Presentacion_UI.IniciarSesion.resources
 C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Presentacion_UI\bin\Debug\BE.dll
 C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Presentacion_UI\bin\Debug\Negocio.dll
 C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Presentacion_UI\bin\Debug\DAL.dll
@@ -15,3 +14,7 @@ C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Pra
 C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Presentacion_UI\bin\Debug\Negocio.pdb
 C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Presentacion_UI\bin\Debug\DAL.pdb
 C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Presentacion_UI\obj\Debug\Presentacion_UI.csproj.CopyComplete
+C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Presentacion_UI\bin\Debug\Utility.dll
+C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Presentacion_UI\bin\Debug\Utility.pdb
+C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Presentacion_UI\obj\Debug\Presentacion_UI.IniciarSesion.resources
+C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Presentacion_UI\obj\Debug\Presentacion_UI.Inicio.resources

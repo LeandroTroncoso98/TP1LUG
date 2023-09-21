@@ -33,7 +33,15 @@ namespace Presentacion
             this.administrarProfesoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.administrarClientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarSesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.administrarSupervisoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lnombre = new System.Windows.Forms.Label();
+            this.lApellido = new System.Windows.Forms.Label();
+            this.lRol = new System.Windows.Forms.Label();
+            this.lEmail = new System.Windows.Forms.Label();
             this.menuStrip2.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip2
@@ -41,10 +49,11 @@ namespace Presentacion
             this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.administrarProfesoresToolStripMenuItem,
             this.administrarClientesToolStripMenuItem,
+            this.administrarSupervisoresToolStripMenuItem,
             this.cerrarSesionToolStripMenuItem});
             this.menuStrip2.Location = new System.Drawing.Point(0, 0);
             this.menuStrip2.Name = "menuStrip2";
-            this.menuStrip2.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip2.Size = new System.Drawing.Size(957, 24);
             this.menuStrip2.TabIndex = 0;
             this.menuStrip2.Text = "menuStrip1";
             // 
@@ -68,19 +77,88 @@ namespace Presentacion
             this.cerrarSesionToolStripMenuItem.Text = "Cerrar Sesion";
             this.cerrarSesionToolStripMenuItem.Click += new System.EventHandler(this.cerrarSesionToolStripMenuItem_Click);
             // 
+            // administrarSupervisoresToolStripMenuItem
+            // 
+            this.administrarSupervisoresToolStripMenuItem.Name = "administrarSupervisoresToolStripMenuItem";
+            this.administrarSupervisoresToolStripMenuItem.Size = new System.Drawing.Size(150, 20);
+            this.administrarSupervisoresToolStripMenuItem.Text = "Administrar Supervisores";
+            this.administrarSupervisoresToolStripMenuItem.Click += new System.EventHandler(this.administrarSupervisoresToolStripMenuItem_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.lEmail);
+            this.panel1.Controls.Add(this.lRol);
+            this.panel1.Controls.Add(this.lApellido);
+            this.panel1.Controls.Add(this.lnombre);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Location = new System.Drawing.Point(0, 27);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(200, 244);
+            this.panel1.TabIndex = 2;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(32, 14);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(129, 25);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Bienvenido";
+            // 
+            // lnombre
+            // 
+            this.lnombre.AutoSize = true;
+            this.lnombre.Location = new System.Drawing.Point(12, 48);
+            this.lnombre.Name = "lnombre";
+            this.lnombre.Size = new System.Drawing.Size(47, 13);
+            this.lnombre.TabIndex = 1;
+            this.lnombre.Text = "Nombre:";
+            // 
+            // lApellido
+            // 
+            this.lApellido.AutoSize = true;
+            this.lApellido.Location = new System.Drawing.Point(12, 71);
+            this.lApellido.Name = "lApellido";
+            this.lApellido.Size = new System.Drawing.Size(47, 13);
+            this.lApellido.TabIndex = 2;
+            this.lApellido.Text = "Apellido:";
+            // 
+            // lRol
+            // 
+            this.lRol.AutoSize = true;
+            this.lRol.Location = new System.Drawing.Point(12, 94);
+            this.lRol.Name = "lRol";
+            this.lRol.Size = new System.Drawing.Size(26, 13);
+            this.lRol.TabIndex = 3;
+            this.lRol.Text = "Rol:";
+            // 
+            // lEmail
+            // 
+            this.lEmail.AutoSize = true;
+            this.lEmail.Location = new System.Drawing.Point(12, 117);
+            this.lEmail.Name = "lEmail";
+            this.lEmail.Size = new System.Drawing.Size(35, 13);
+            this.lEmail.TabIndex = 4;
+            this.lEmail.Text = "Email:";
+            // 
             // AdministracionMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(957, 592);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip2);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip2;
             this.Name = "AdministracionMenu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AdministracionMenu";
+            this.Load += new System.EventHandler(this.AdministracionMenu_Load);
             this.menuStrip2.ResumeLayout(false);
             this.menuStrip2.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -92,5 +170,12 @@ namespace Presentacion
         private System.Windows.Forms.ToolStripMenuItem administrarProfesoresToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem administrarClientesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cerrarSesionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem administrarSupervisoresToolStripMenuItem;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lEmail;
+        private System.Windows.Forms.Label lRol;
+        private System.Windows.Forms.Label lApellido;
+        private System.Windows.Forms.Label lnombre;
+        private System.Windows.Forms.Label label1;
     }
 }

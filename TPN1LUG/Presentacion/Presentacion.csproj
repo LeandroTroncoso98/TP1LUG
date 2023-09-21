@@ -58,6 +58,12 @@
     <Compile Include="AdministrarProfesores.Designer.cs">
       <DependentUpon>AdministrarProfesores.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdministrarSupervisores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdministrarSupervisores.Designer.cs">
+      <DependentUpon>AdministrarSupervisores.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,11 +78,19 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TP1LUGDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TP1LUGDataSet.xsd</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AdministracionMenu.resx">
       <DependentUpon>AdministracionMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AdministrarProfesores.resx">
       <DependentUpon>AdministrarProfesores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdministrarSupervisores.resx">
+      <DependentUpon>AdministrarSupervisores.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -102,6 +116,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="TP1LUGDataSet.xsc">
+      <DependentUpon>TP1LUGDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="TP1LUGDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TP1LUGDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TP1LUGDataSet.xss">
+      <DependentUpon>TP1LUGDataSet.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

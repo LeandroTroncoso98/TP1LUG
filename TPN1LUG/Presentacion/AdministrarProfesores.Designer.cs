@@ -29,6 +29,7 @@ namespace Presentacion
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dgvEmpleados = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
@@ -44,17 +45,27 @@ namespace Presentacion
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnModif = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
+            this.tP1LUGDataSet = new Presentacion.TP1LUGDataSet();
+            this.usuarioBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.usuarioTableAdapter = new Presentacion.TP1LUGDataSetTableAdapters.UsuarioTableAdapter();
+            this.btnAscenderSupervisor = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpleados)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tP1LUGDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.usuarioBindingSource)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvEmpleados
             // 
             this.dgvEmpleados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvEmpleados.Location = new System.Drawing.Point(12, 39);
+            this.dgvEmpleados.Location = new System.Drawing.Point(17, 39);
             this.dgvEmpleados.Name = "dgvEmpleados";
-            this.dgvEmpleados.Size = new System.Drawing.Size(511, 183);
-            this.dgvEmpleados.TabIndex = 0;
+            this.dgvEmpleados.Size = new System.Drawing.Size(526, 183);
+            this.dgvEmpleados.TabIndex = 4;
+            this.dgvEmpleados.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmpleados_CellClick);
             // 
             // label1
             // 
@@ -69,15 +80,15 @@ namespace Presentacion
             // 
             this.txtNombre.Location = new System.Drawing.Point(107, 45);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(182, 20);
-            this.txtNombre.TabIndex = 0;
+            this.txtNombre.Size = new System.Drawing.Size(177, 20);
+            this.txtNombre.TabIndex = 1;
             // 
             // txtApellido
             // 
             this.txtApellido.Location = new System.Drawing.Point(107, 71);
             this.txtApellido.Name = "txtApellido";
-            this.txtApellido.Size = new System.Drawing.Size(182, 20);
-            this.txtApellido.TabIndex = 1;
+            this.txtApellido.Size = new System.Drawing.Size(177, 20);
+            this.txtApellido.TabIndex = 2;
             // 
             // label2
             // 
@@ -92,8 +103,8 @@ namespace Presentacion
             // 
             this.txtEmail.Location = new System.Drawing.Point(107, 97);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(182, 20);
-            this.txtEmail.TabIndex = 2;
+            this.txtEmail.Size = new System.Drawing.Size(177, 20);
+            this.txtEmail.TabIndex = 3;
             // 
             // label3
             // 
@@ -108,8 +119,8 @@ namespace Presentacion
             // 
             this.txtEspecializacion.Location = new System.Drawing.Point(107, 123);
             this.txtEspecializacion.Name = "txtEspecializacion";
-            this.txtEspecializacion.Size = new System.Drawing.Size(182, 20);
-            this.txtEspecializacion.TabIndex = 3;
+            this.txtEspecializacion.Size = new System.Drawing.Size(177, 20);
+            this.txtEspecializacion.TabIndex = 4;
             // 
             // label4
             // 
@@ -132,10 +143,10 @@ namespace Presentacion
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.txtApellido);
-            this.panel1.Location = new System.Drawing.Point(12, 228);
+            this.panel1.Location = new System.Drawing.Point(17, 228);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(292, 148);
-            this.panel1.TabIndex = 9;
+            this.panel1.Size = new System.Drawing.Size(287, 148);
+            this.panel1.TabIndex = 0;
             // 
             // label5
             // 
@@ -152,7 +163,7 @@ namespace Presentacion
             this.btnAgregar.Location = new System.Drawing.Point(310, 233);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(75, 23);
-            this.btnAgregar.TabIndex = 0;
+            this.btnAgregar.TabIndex = 1;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
@@ -162,18 +173,20 @@ namespace Presentacion
             this.btnEliminar.Location = new System.Drawing.Point(310, 291);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(75, 23);
-            this.btnEliminar.TabIndex = 2;
+            this.btnEliminar.TabIndex = 3;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnModif
             // 
             this.btnModif.Location = new System.Drawing.Point(310, 262);
             this.btnModif.Name = "btnModif";
             this.btnModif.Size = new System.Drawing.Size(75, 23);
-            this.btnModif.TabIndex = 1;
+            this.btnModif.TabIndex = 2;
             this.btnModif.Text = "Modificar";
             this.btnModif.UseVisualStyleBackColor = true;
+            this.btnModif.Click += new System.EventHandler(this.btnModif_Click);
             // 
             // label7
             // 
@@ -185,11 +198,56 @@ namespace Presentacion
             this.label7.TabIndex = 13;
             this.label7.Text = "LISTA DE PROFESORES";
             // 
+            // tP1LUGDataSet
+            // 
+            this.tP1LUGDataSet.DataSetName = "TP1LUGDataSet";
+            this.tP1LUGDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // usuarioBindingSource
+            // 
+            this.usuarioBindingSource.DataMember = "Usuario";
+            this.usuarioBindingSource.DataSource = this.tP1LUGDataSet;
+            // 
+            // usuarioTableAdapter
+            // 
+            this.usuarioTableAdapter.ClearBeforeFill = true;
+            // 
+            // btnAscenderSupervisor
+            // 
+            this.btnAscenderSupervisor.Location = new System.Drawing.Point(3, 28);
+            this.btnAscenderSupervisor.Name = "btnAscenderSupervisor";
+            this.btnAscenderSupervisor.Size = new System.Drawing.Size(133, 23);
+            this.btnAscenderSupervisor.TabIndex = 14;
+            this.btnAscenderSupervisor.Text = "Ascender a supervisor";
+            this.btnAscenderSupervisor.UseVisualStyleBackColor = true;
+            this.btnAscenderSupervisor.Click += new System.EventHandler(this.btnAscenderSupervisor_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.panel2.Controls.Add(this.label6);
+            this.panel2.Controls.Add(this.btnAscenderSupervisor);
+            this.panel2.Location = new System.Drawing.Point(402, 228);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(141, 148);
+            this.panel2.TabIndex = 11;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(39, 9);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(70, 16);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "Adicional:";
+            // 
             // AdministrarProfesores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(560, 389);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.btnModif);
             this.Controls.Add(this.btnEliminar);
@@ -197,11 +255,15 @@ namespace Presentacion
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dgvEmpleados);
             this.Name = "AdministrarProfesores";
-            this.Text = "AdministrarProfesores";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.AdministrarProfesores_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpleados)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tP1LUGDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.usuarioBindingSource)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -224,5 +286,11 @@ namespace Presentacion
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnModif;
         private System.Windows.Forms.Label label7;
+        private TP1LUGDataSet tP1LUGDataSet;
+        private System.Windows.Forms.BindingSource usuarioBindingSource;
+        private TP1LUGDataSetTableAdapters.UsuarioTableAdapter usuarioTableAdapter;
+        private System.Windows.Forms.Button btnAscenderSupervisor;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label6;
     }
 }

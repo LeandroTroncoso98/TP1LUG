@@ -42,6 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLLEmpleado.cs" />
+    <Compile Include="BLLProfesor.cs" />
+    <Compile Include="BLLSupervisor.cs" />
+    <Compile Include="BLLUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -11,6 +11,5 @@ namespace BE
         public int Rutina_ID { get; set; }
         public DateTime Fecha_Inicio { get; set; }
         public List<Dia> Lista_Dia { get; set; }
-
     }
 }

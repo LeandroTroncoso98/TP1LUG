@@ -112,6 +112,7 @@ namespace Presentacion
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtContra);
             this.Name = "IniciarSesion";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Iniciar Sesion ";
             this.ResumeLayout(false);
             this.PerformLayout();

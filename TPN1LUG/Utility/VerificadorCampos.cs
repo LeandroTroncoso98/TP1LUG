@@ -23,5 +23,13 @@ namespace Utility
             }
             else return false;
         }
+        public static bool VerificarCamposSupervisor(TextBox nombre,TextBox Apellido, TextBox Email)
+        {
+            if (!string.IsNullOrWhiteSpace(nombre.Text) && !string.IsNullOrWhiteSpace(Apellido.Text) && !string.IsNullOrWhiteSpace(Email.Text))
+            {
+                return true;
+            }
+            else return false;
+        }
     }
 }

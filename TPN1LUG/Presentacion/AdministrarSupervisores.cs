@@ -50,17 +50,21 @@ namespace Presentacion
             {
                 if (VerificadorCampos.VerificarCamposSupervisor(txtNombre, txtApellido, txtEmail))
                 {
-                    Supervisor supervisor = new Supervisor()
+                    if (!oBLLSupervisor.VerificarMail(txtEmail.Text.Trim()))
                     {
-                        Nombre = txtNombre.Text.Trim(),
-                        Apellido = txtApellido.Text.Trim(),
-                        Email = txtEmail.Text.Trim(),
-                        Rol = RolUsuario.Supervisor
-                    };
-                    oBLLSupervisor.AltaSupervisor(supervisor);
-                    VaciarCampos();
-                    CargarGrilla();
-                    MessageBox.Show($"Se ha creado con exíto.\n Para ingresar:\nEmail: {supervisor.Email}.\nContraseña: 123456");
+                        Supervisor supervisor = new Supervisor()
+                        {
+                            Nombre = txtNombre.Text.Trim(),
+                            Apellido = txtApellido.Text.Trim(),
+                            Email = txtEmail.Text.Trim(),
+                            Rol = RolUsuario.Supervisor
+                        };
+                        oBLLSupervisor.AltaSupervisor(supervisor);
+                        VaciarCampos();
+                        CargarGrilla();
+                        MessageBox.Show($"Se ha creado con exíto.\n Para ingresar:\nEmail: {supervisor.Email}.\nContraseña: 123456");
+                    }
+                    else MessageBox.Show("Ese email ya se encuentra en uso.", "Error de administracion de supervisor", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 }
             }
@@ -76,19 +80,24 @@ namespace Presentacion
             {
                 if (VerificadorCampos.VerificarCamposSupervisor(txtNombre, txtApellido, txtEmail))
                 {
-                    Supervisor supervisor = new Supervisor()
+                    if (!oBLLSupervisor.VerificarMail(txtEmail.Text, _supervisor.Usuario_ID))
                     {
-                        Usuario_ID = _supervisor.Usuario_ID,
-                        Nombre = txtNombre.Text,
-                        Apellido = txtApellido.Text,
-                        Email = txtEmail.Text,
-                        Rol = RolUsuario.Supervisor
-                    };
-                    oBLLSupervisor.ModificarSupervisor(supervisor);
-                    CargarGrilla();
-                    VaciarCampos();
-                    _supervisor = null;
-                }else MessageBox.Show($"Los campos son obligatorios.", "Error de administracion de supervisor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Supervisor supervisor = new Supervisor()
+                        {
+                            Usuario_ID = _supervisor.Usuario_ID,
+                            Nombre = txtNombre.Text,
+                            Apellido = txtApellido.Text,
+                            Email = txtEmail.Text,
+                            Rol = RolUsuario.Supervisor
+                        };
+                        oBLLSupervisor.ModificarSupervisor(supervisor);
+                        CargarGrilla();
+                        VaciarCampos();
+                        _supervisor = null;
+                    }
+                    else MessageBox.Show("Ese email ya se encuentra en uso.", "Error de administracion de supervisor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else MessageBox.Show($"Los campos son obligatorios.", "Error de administracion de supervisor", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else MessageBox.Show($"Debes seleccionar a un supervisor para editar", "Error de administracion de supervisor", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
@@ -105,7 +114,7 @@ namespace Presentacion
 
             }catch(Exception ex)
             {
-                MessageBox.Show("No se ha podido seleccionar al supervisor", "Error al seleccionar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"No se ha podido seleccionar al supervisor. Causa: {ex}", "Error al seleccionar", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

@@ -53,5 +53,12 @@ namespace Presentacion
             adm.MdiParent = this;
             adm.Show();
         }
+
+        private void administrarClientesToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            ABMClientes aBMClientes = new ABMClientes();
+            aBMClientes.MdiParent = this;
+            aBMClientes.Show();
+        }
     }
 }

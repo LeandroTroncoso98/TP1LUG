@@ -29,17 +29,21 @@ namespace Presentacion
             {
                 if (VerificadorCampos.VerificarCamposProfesor(txtNombre, txtApellido, txtEmail, txtEspecializacion))
                 {
-                    Profesor profesor = new Profesor()
+                    if (!oBLLProfesor.VerificarMail(txtEmail.Text))
                     {
-                        Nombre = txtNombre.Text,
-                        Apellido = txtApellido.Text,
-                        Email = txtEmail.Text,
-                        Especializacion = txtEspecializacion.Text,
-                        Rol = RolUsuario.Profesor
-                    };
-                    oBLLProfesor.AltaProfesor(profesor);
-                    CargarGrillaEmpleados();
-                    VaciarCampos();
+                        Profesor profesor = new Profesor()
+                        {
+                            Nombre = txtNombre.Text,
+                            Apellido = txtApellido.Text,
+                            Email = txtEmail.Text,
+                            Especializacion = txtEspecializacion.Text,
+                            Rol = RolUsuario.Profesor
+                        };
+                        oBLLProfesor.AltaProfesor(profesor);
+                        CargarGrillaEmpleados();
+                        VaciarCampos();
+                    }
+                    else MessageBox.Show("Ese email ya se encuentra en uso.", "Error al crear profesor", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch(Exception ex)
@@ -100,19 +104,23 @@ namespace Presentacion
             {
                 if (VerificadorCampos.VerificarCamposProfesor(txtNombre, txtApellido, txtEmail, txtEspecializacion))
                 {
-                    Profesor profesor = new Profesor()
+                    if (!oBLLProfesor.VerificarMail(txtEmail.Text, _profesor.Usuario_ID))
                     {
-                        Usuario_ID = _profesor.Usuario_ID,
-                        Nombre = txtNombre.Text,
-                        Apellido = txtApellido.Text,
-                        Email = txtEmail.Text,
-                        Especializacion = txtEspecializacion.Text,
-                        Rol = RolUsuario.Profesor
-                    };
-                    oBLLProfesor.ActualizarProfesor(profesor);
-                    CargarGrillaEmpleados();
-                    VaciarCampos();
-                    _profesor = null;                  
+                        Profesor profesor = new Profesor()
+                        {
+                            Usuario_ID = _profesor.Usuario_ID,
+                            Nombre = txtNombre.Text,
+                            Apellido = txtApellido.Text,
+                            Email = txtEmail.Text,
+                            Especializacion = txtEspecializacion.Text,
+                            Rol = RolUsuario.Profesor
+                        };
+                        oBLLProfesor.ActualizarProfesor(profesor);
+                        CargarGrillaEmpleados();
+                        VaciarCampos();
+                        _profesor = null;
+                    }
+                    else MessageBox.Show("Ese email ya se encuentra en uso.", "Error al crear profesor", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else MessageBox.Show($"Todos los campos son obligatorios", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 

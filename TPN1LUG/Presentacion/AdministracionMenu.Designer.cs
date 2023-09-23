@@ -32,14 +32,15 @@ namespace Presentacion
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.administrarProfesoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.administrarClientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cerrarSesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.administrarSupervisoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cerrarSesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lnombre = new System.Windows.Forms.Label();
-            this.lApellido = new System.Windows.Forms.Label();
-            this.lRol = new System.Windows.Forms.Label();
             this.lEmail = new System.Windows.Forms.Label();
+            this.lRol = new System.Windows.Forms.Label();
+            this.lApellido = new System.Windows.Forms.Label();
+            this.lnombre = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.administrarClientesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -66,16 +67,11 @@ namespace Presentacion
             // 
             // administrarClientesToolStripMenuItem
             // 
+            this.administrarClientesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.administrarClientesToolStripMenuItem1});
             this.administrarClientesToolStripMenuItem.Name = "administrarClientesToolStripMenuItem";
-            this.administrarClientesToolStripMenuItem.Size = new System.Drawing.Size(126, 20);
-            this.administrarClientesToolStripMenuItem.Text = "Administrar Clientes";
-            // 
-            // cerrarSesionToolStripMenuItem
-            // 
-            this.cerrarSesionToolStripMenuItem.Name = "cerrarSesionToolStripMenuItem";
-            this.cerrarSesionToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
-            this.cerrarSesionToolStripMenuItem.Text = "Cerrar Sesion";
-            this.cerrarSesionToolStripMenuItem.Click += new System.EventHandler(this.cerrarSesionToolStripMenuItem_Click);
+            this.administrarClientesToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.administrarClientesToolStripMenuItem.Text = "Clientes";
             // 
             // administrarSupervisoresToolStripMenuItem
             // 
@@ -83,6 +79,13 @@ namespace Presentacion
             this.administrarSupervisoresToolStripMenuItem.Size = new System.Drawing.Size(150, 20);
             this.administrarSupervisoresToolStripMenuItem.Text = "Administrar Supervisores";
             this.administrarSupervisoresToolStripMenuItem.Click += new System.EventHandler(this.administrarSupervisoresToolStripMenuItem_Click);
+            // 
+            // cerrarSesionToolStripMenuItem
+            // 
+            this.cerrarSesionToolStripMenuItem.Name = "cerrarSesionToolStripMenuItem";
+            this.cerrarSesionToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
+            this.cerrarSesionToolStripMenuItem.Text = "Cerrar Sesion";
+            this.cerrarSesionToolStripMenuItem.Click += new System.EventHandler(this.cerrarSesionToolStripMenuItem_Click);
             // 
             // panel1
             // 
@@ -96,33 +99,14 @@ namespace Presentacion
             this.panel1.Size = new System.Drawing.Size(200, 244);
             this.panel1.TabIndex = 2;
             // 
-            // label1
+            // lEmail
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(32, 14);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(129, 25);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Bienvenido";
-            // 
-            // lnombre
-            // 
-            this.lnombre.AutoSize = true;
-            this.lnombre.Location = new System.Drawing.Point(12, 48);
-            this.lnombre.Name = "lnombre";
-            this.lnombre.Size = new System.Drawing.Size(47, 13);
-            this.lnombre.TabIndex = 1;
-            this.lnombre.Text = "Nombre:";
-            // 
-            // lApellido
-            // 
-            this.lApellido.AutoSize = true;
-            this.lApellido.Location = new System.Drawing.Point(12, 71);
-            this.lApellido.Name = "lApellido";
-            this.lApellido.Size = new System.Drawing.Size(47, 13);
-            this.lApellido.TabIndex = 2;
-            this.lApellido.Text = "Apellido:";
+            this.lEmail.AutoSize = true;
+            this.lEmail.Location = new System.Drawing.Point(12, 117);
+            this.lEmail.Name = "lEmail";
+            this.lEmail.Size = new System.Drawing.Size(35, 13);
+            this.lEmail.TabIndex = 4;
+            this.lEmail.Text = "Email:";
             // 
             // lRol
             // 
@@ -133,14 +117,40 @@ namespace Presentacion
             this.lRol.TabIndex = 3;
             this.lRol.Text = "Rol:";
             // 
-            // lEmail
+            // lApellido
             // 
-            this.lEmail.AutoSize = true;
-            this.lEmail.Location = new System.Drawing.Point(12, 117);
-            this.lEmail.Name = "lEmail";
-            this.lEmail.Size = new System.Drawing.Size(35, 13);
-            this.lEmail.TabIndex = 4;
-            this.lEmail.Text = "Email:";
+            this.lApellido.AutoSize = true;
+            this.lApellido.Location = new System.Drawing.Point(12, 71);
+            this.lApellido.Name = "lApellido";
+            this.lApellido.Size = new System.Drawing.Size(47, 13);
+            this.lApellido.TabIndex = 2;
+            this.lApellido.Text = "Apellido:";
+            // 
+            // lnombre
+            // 
+            this.lnombre.AutoSize = true;
+            this.lnombre.Location = new System.Drawing.Point(12, 48);
+            this.lnombre.Name = "lnombre";
+            this.lnombre.Size = new System.Drawing.Size(47, 13);
+            this.lnombre.TabIndex = 1;
+            this.lnombre.Text = "Nombre:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(32, 14);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(129, 25);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Bienvenido";
+            // 
+            // administrarClientesToolStripMenuItem1
+            // 
+            this.administrarClientesToolStripMenuItem1.Name = "administrarClientesToolStripMenuItem1";
+            this.administrarClientesToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.administrarClientesToolStripMenuItem1.Text = "Administrar clientes";
+            this.administrarClientesToolStripMenuItem1.Click += new System.EventHandler(this.administrarClientesToolStripMenuItem1_Click);
             // 
             // AdministracionMenu
             // 
@@ -177,5 +187,6 @@ namespace Presentacion
         private System.Windows.Forms.Label lApellido;
         private System.Windows.Forms.Label lnombre;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolStripMenuItem administrarClientesToolStripMenuItem1;
     }
 }

@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ABMClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABMClientes.Designer.cs">
+      <DependentUpon>ABMClientes.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdministracionMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,6 +89,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TP1LUGDataSet.xsd</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ABMClientes.resx">
+      <DependentUpon>ABMClientes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AdministracionMenu.resx">
       <DependentUpon>AdministracionMenu.cs</DependentUpon>
     </EmbeddedResource>

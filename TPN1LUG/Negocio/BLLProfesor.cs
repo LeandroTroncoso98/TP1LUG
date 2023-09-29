@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Negocio
 {
-    public class BLLProfesor : BLLUsuario
+    public class BLLProfesor : BLLEmpleado
     {
         Acceso oDatos;
         public bool AltaProfesor(Profesor profesor)

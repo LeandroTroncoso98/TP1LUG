@@ -135,10 +135,13 @@ namespace Presentacion
         {
             try
             {
-                oBLLProfesor.EliminarUsuario(_profesor.Usuario_ID);
-                CargarGrillaEmpleados();
-                VaciarCampos();
-                _profesor = null;
+                if (!oBLLProfesor.ExisteAsociadoEmpleado(_profesor))
+                {
+                    oBLLProfesor.EliminarUsuario(_profesor.Usuario_ID);
+                    CargarGrillaEmpleados();
+                    VaciarCampos();
+                    _profesor = null;
+                }else MessageBox.Show($"Imposible eliminarlo tiene un cliente asociado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {

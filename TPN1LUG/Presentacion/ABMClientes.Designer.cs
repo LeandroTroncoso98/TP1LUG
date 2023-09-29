@@ -274,6 +274,7 @@ namespace Presentacion
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dgvClientes);
             this.Name = "ABMClientes";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ABMClientes";
             this.Load += new System.EventHandler(this.ABMClientes_Load);
             this.panel1.ResumeLayout(false);

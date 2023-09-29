@@ -124,12 +124,16 @@ namespace Presentacion
             {
                 if(_supervisor != null)
                 {
-                    oBLLSupervisor.EliminarUsuario(_supervisor.Usuario_ID);
-                    CargarGrilla();
-                    VaciarCampos();
-                    _supervisor = null;
-                    GC.Collect();
-                    MessageBox.Show("Eliminado con exíto.");
+                    if (!oBLLSupervisor.ExisteAsociadoEmpleado(_supervisor))
+                    {
+                        oBLLSupervisor.EliminarUsuario(_supervisor.Usuario_ID);
+                        CargarGrilla();
+                        VaciarCampos();
+                        _supervisor = null;
+                        GC.Collect();
+                        MessageBox.Show("Eliminado con exíto.");
+                    }
+                    else MessageBox.Show($"Imposible eliminarlo, tiene un cliente asociado", "Error de administracion de supervisor", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else MessageBox.Show($"Debes seleccionar a un supervisor para editar", "Error de administracion de supervisor", MessageBoxButtons.OK, MessageBoxIcon.Error);
 

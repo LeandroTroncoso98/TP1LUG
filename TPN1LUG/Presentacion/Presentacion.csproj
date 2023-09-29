@@ -64,6 +64,12 @@
     <Compile Include="AdministrarProfesores.Designer.cs">
       <DependentUpon>AdministrarProfesores.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdministrarRutina.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdministrarRutina.Designer.cs">
+      <DependentUpon>AdministrarRutina.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdministrarSupervisores.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,6 +81,30 @@
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormConsultarRutina.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConsultarRutina.Designer.cs">
+      <DependentUpon>FormConsultarRutina.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDia.Designer.cs">
+      <DependentUpon>FormDia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormEjercicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEjercicio.Designer.cs">
+      <DependentUpon>FormEjercicio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormRutina.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRutina.Designer.cs">
+      <DependentUpon>FormRutina.cs</DependentUpon>
     </Compile>
     <Compile Include="IniciarSesion.cs">
       <SubType>Form</SubType>
@@ -98,11 +128,26 @@
     <EmbeddedResource Include="AdministrarProfesores.resx">
       <DependentUpon>AdministrarProfesores.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AdministrarRutina.resx">
+      <DependentUpon>AdministrarRutina.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AdministrarSupervisores.resx">
       <DependentUpon>AdministrarSupervisores.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConsultarRutina.resx">
+      <DependentUpon>FormConsultarRutina.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDia.resx">
+      <DependentUpon>FormDia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEjercicio.resx">
+      <DependentUpon>FormEjercicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRutina.resx">
+      <DependentUpon>FormRutina.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IniciarSesion.resx">
       <DependentUpon>IniciarSesion.cs</DependentUpon>
@@ -115,6 +160,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -157,6 +203,9 @@
       <Project>{86603e17-01b8-42b4-8dc9-5f2d725eb7f5}</Project>
       <Name>Utility</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Inicio.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

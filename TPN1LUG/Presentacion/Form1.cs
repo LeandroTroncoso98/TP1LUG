@@ -24,5 +24,11 @@ namespace Presentacion
             form.MdiParent = this;
             form.Show();
         }
+
+        private void consultarRutinaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormConsultarRutina form = new FormConsultarRutina();
+            form.Show();
+        }
     }
 }

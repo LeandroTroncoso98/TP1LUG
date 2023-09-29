@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Negocio
 {
-    public class BLLSupervisor : BLLUsuario
+    public class BLLSupervisor : BLLEmpleado
     {
         Acceso oDatos;
         public List<Supervisor> ListaSupervisores()

@@ -66,5 +66,20 @@ namespace DAL
             finally { oCnn.Close(); }
             return ds;
         }
+        public bool LeerScalar(string consulta)
+        {
+            oCnn.Open();
+            cmd = new SqlCommand(consulta, oCnn);
+            cmd.CommandType = CommandType.Text;
+            try
+            {
+                int resultado = Convert.ToInt32(cmd.ExecuteScalar());
+                oCnn.Close();
+                if (resultado > 0) return true;
+                else return false;
+            }
+            catch (SqlException ex)
+            { throw ex; }
+        }
     }
 }

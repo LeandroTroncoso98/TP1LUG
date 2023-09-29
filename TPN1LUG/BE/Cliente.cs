@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace BE
 {
     public class Cliente : Usuario
-    {
+    {      
         #region propiedades
         public int Telefono { get; set; }
         public string Peso { get; set; }

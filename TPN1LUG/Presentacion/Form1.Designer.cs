@@ -58,11 +58,15 @@ namespace Presentacion
             this.consultarRutinaToolStripMenuItem.Name = "consultarRutinaToolStripMenuItem";
             this.consultarRutinaToolStripMenuItem.Size = new System.Drawing.Size(107, 20);
             this.consultarRutinaToolStripMenuItem.Text = "Consultar Rutina";
+            this.consultarRutinaToolStripMenuItem.Click += new System.EventHandler(this.consultarRutinaToolStripMenuItem_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.BackgroundImage = global::Presentacion.Properties.Resources.Inicio;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(889, 450);
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;

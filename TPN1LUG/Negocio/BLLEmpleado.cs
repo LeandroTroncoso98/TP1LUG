@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Negocio
 {
-    public class BLLEmpleado
+    public class BLLEmpleado : BLLUsuario
     {
         Acceso oDatos;
 
@@ -40,6 +40,11 @@ namespace Negocio
                 return empleado;
             }
             else return null;
-        }            
+        } 
+        public bool ExisteAsociadoEmpleado(Empleado empleado)
+        {
+            oDatos = new Acceso();
+            return oDatos.LeerScalar($"SELECT COUNT(Empleado_ID) FROM Usuario WHERE Empleado_ID LIKE {empleado.Usuario_ID} ");
+        }
     }
 }

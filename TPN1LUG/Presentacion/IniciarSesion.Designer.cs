@@ -44,6 +44,7 @@ namespace Presentacion
             this.txtContra.Name = "txtContra";
             this.txtContra.Size = new System.Drawing.Size(201, 20);
             this.txtContra.TabIndex = 1;
+            this.txtContra.UseSystemPasswordChar = true;
             // 
             // label1
             // 

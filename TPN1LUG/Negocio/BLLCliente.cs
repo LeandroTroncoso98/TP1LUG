@@ -12,6 +12,8 @@ namespace Negocio
     public class BLLCliente : BLLUsuario
     {
         Acceso oDatos;
+        BLLRutina oBLLRutina;
+
         public List<Cliente> listarClientes()
         {
             List<Cliente> clientes = new List<Cliente>();
@@ -56,6 +58,32 @@ namespace Negocio
             return oDatos.Escribir(consultaSQL);
         }
 
+        public Cliente GetCliente(string email)
+        {
+            oDatos = new Acceso();
+            DataTable table;
+            string consultaSQL = $"SELECT a.Usuario_ID,a.Nombre,a.Apellido,a.Rol,a.Email,a.Telefono,a.Peso,a.Fecha_Nacimiento,a.Rutina_ID FROM Usuario AS a WHERE a.Rol LIKE 3 AND a.Email LIKE '{email}'";
+            table = oDatos.Leer(consultaSQL);
+            if (table.Rows.Count == 1)
+            {
+                DataRow row = table.Rows[0];
+                Cliente cliente = new Cliente();
+                cliente.Usuario_ID = Convert.ToInt32(row[0]);
+                cliente.Nombre = Convert.ToString(row[1]);
+                cliente.Apellido = Convert.ToString(row[2]);
+                cliente.Rol = (RolUsuario)row[3];
+                cliente.Email = Convert.ToString(row[4]);
+                cliente.Telefono = Convert.ToInt32(row[5]);
+                cliente.Peso = Convert.ToString(row[6]);
+                cliente.Fecha_Nacimiento = Convert.ToDateTime(row[7]);
+                cliente.Edad = Cliente.CalcularEdad(cliente.Fecha_Nacimiento);
+                oBLLRutina = new BLLRutina();
+                cliente.oRutina = new Rutina();
+                cliente.oRutina = oBLLRutina.traerRutina(cliente);
+                return cliente;
+            }
+            else return null;
+        }
     }
 }
 

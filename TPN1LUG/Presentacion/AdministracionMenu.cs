@@ -60,5 +60,12 @@ namespace Presentacion
             aBMClientes.MdiParent = this;
             aBMClientes.Show();
         }
+
+        private void armarRutinaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AdministrarRutina administrarRutina = new AdministrarRutina();
+            administrarRutina.MdiParent = this;
+            administrarRutina.Show();
+        }
     }
 }

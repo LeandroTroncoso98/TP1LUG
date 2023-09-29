@@ -24,3 +24,8 @@ C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Pra
 C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Presentacion\bin\Debug\Security.pdb
 C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Presentacion\obj\Debug\Presentacion.AdministrarSupervisores.resources
 C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Presentacion\obj\Debug\Presentacion.ABMClientes.resources
+C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Presentacion\obj\Debug\Presentacion.AdministrarRutina.resources
+C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Presentacion\obj\Debug\Presentacion.FormRutina.resources
+C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Presentacion\obj\Debug\Presentacion.FormDia.resources
+C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Presentacion\obj\Debug\Presentacion.FormEjercicio.resources
+C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Presentacion\obj\Debug\Presentacion.FormConsultarRutina.resources

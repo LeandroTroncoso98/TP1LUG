@@ -56,9 +56,9 @@
       <Project>{ad4b02b7-ff47-458d-8024-08df00b4b129}</Project>
       <Name>BE</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DAL\DAL.csproj">
-      <Project>{f2153168-e990-4812-bbf4-c6f82959525a}</Project>
-      <Name>DAL</Name>
+    <ProjectReference Include="..\Mapper\Mapper.csproj">
+      <Project>{3725BB6E-7B31-4855-ACAD-A7B444C814B6}</Project>
+      <Name>Mapper</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,5 +1,5 @@
 ﻿using BE;
-using DAL;
+using Mapper;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,40 +11,25 @@ namespace Negocio
 {
     public class BLLEmpleado : BLLUsuario
     {
-        Acceso oDatos;
-
-        public bool IniciarSesion(string user,string pass)
+        public BLLEmpleado()
         {
-            DataTable table;
-            oDatos = new Acceso();
-            table = oDatos.Leer($"SELECT COUNT(*) AS usuario FROM Usuario AS a WHERE a.Email LIKE '{user}' AND a.Contraseña LIKE '{pass}'");
-            int resultado = Convert.ToInt32(table.Rows[0]["usuario"]);            
-            bool valido = (resultado > 0) ? true : false;
-            return valido;
+            _MPPEmpleado = new MPPEmpleado();
         }
-        public Empleado HabilitarSesion(string user,string pass)
+        MPPEmpleado _MPPEmpleado;
+        public bool IniciarSesion(string user, string pass)
         {
-            DataTable table;
-            oDatos = new Acceso();
-            table = oDatos.Leer($"SELECT a.Usuario_ID,a.Nombre,a.Apellido,a.Rol,a.Email FROM Usuario AS a WHERE a.Email LIKE '{user}' AND a.Contraseña LIKE '{pass}'");
-            if (table.Rows.Count > 0)
-            {
-                DataRow row = table.Rows[0];
-                Empleado empleado = new Empleado();
-                empleado.Usuario_ID = Convert.ToInt32(row[0]);
-                empleado.Nombre = row[1].ToString();
-                empleado.Apellido = row[2].ToString();
-                empleado.Email = row[4].ToString();
-                int rol = Convert.ToInt32(row[3]);
-                empleado.Rol = (RolUsuario)rol; // Asigna el rol al empleado
-                return empleado;
-            }
-            else return null;
-        } 
+            return _MPPEmpleado.IniciarSesion(user, pass);
+        }
+        public Empleado HabilitarSesion(string user, string pass)
+        {
+            return _MPPEmpleado.HabilitarSesion(user, pass);
+        }
         public bool ExisteAsociadoEmpleado(Empleado empleado)
         {
-            oDatos = new Acceso();
-            return oDatos.LeerScalar($"SELECT COUNT(Empleado_ID) FROM Usuario WHERE Empleado_ID LIKE {empleado.Usuario_ID} ");
+            return _MPPEmpleado.ExisteAsociadoEmpleado(empleado);
         }
+
+
+
     }
 }

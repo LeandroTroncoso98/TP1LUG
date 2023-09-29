@@ -86,11 +86,21 @@ namespace Presentacion
 
         private void btnMostrar_Click(object sender, EventArgs e)
         {
-            int dia_ID = (int)cbxDias.SelectedValue;
-            List<Ejercicio> listaEjercicios = oBLLEjercicio.LeerEjericicios(dia_ID);
-            CargarDGVEjercicios(listaEjercicios);
-            dgvEjercicios.Columns["Ejercicio_ID"].Visible = false;
-            dgvEjercicios.Columns["Descripcion_Adicional"].Visible = false;
+            try
+            {
+                int dia_ID = (int)cbxDias.SelectedValue;
+                List<Ejercicio> listaEjercicios = oBLLEjercicio.LeerEjericicios(dia_ID);
+                if (listaEjercicios != null)
+                {
+                    CargarDGVEjercicios(listaEjercicios);
+                    dgvEjercicios.Columns["Ejercicio_ID"].Visible = false;
+                    dgvEjercicios.Columns["Descripcion_Adicional"].Visible = false;
+                }
+                else MessageBox.Show("No posee ejercicios ese dia.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }catch(Exception ex)
+            {
+                throw ex;
+            }
 
         }
 

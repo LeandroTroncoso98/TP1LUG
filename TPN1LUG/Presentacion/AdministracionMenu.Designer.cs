@@ -50,9 +50,9 @@ namespace Presentacion
             // 
             this.menuStrip2.BackColor = System.Drawing.SystemColors.HotTrack;
             this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.administrarSupervisoresToolStripMenuItem,
             this.administrarProfesoresToolStripMenuItem,
             this.administrarClientesToolStripMenuItem,
-            this.administrarSupervisoresToolStripMenuItem,
             this.cerrarSesionToolStripMenuItem});
             this.menuStrip2.Location = new System.Drawing.Point(0, 56);
             this.menuStrip2.Name = "menuStrip2";
@@ -81,14 +81,14 @@ namespace Presentacion
             // administrarClientesToolStripMenuItem1
             // 
             this.administrarClientesToolStripMenuItem1.Name = "administrarClientesToolStripMenuItem1";
-            this.administrarClientesToolStripMenuItem1.Size = new System.Drawing.Size(179, 22);
+            this.administrarClientesToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.administrarClientesToolStripMenuItem1.Text = "Administrar clientes";
             this.administrarClientesToolStripMenuItem1.Click += new System.EventHandler(this.administrarClientesToolStripMenuItem1_Click);
             // 
             // armarRutinaToolStripMenuItem
             // 
             this.armarRutinaToolStripMenuItem.Name = "armarRutinaToolStripMenuItem";
-            this.armarRutinaToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.armarRutinaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.armarRutinaToolStripMenuItem.Text = "Armar Rutina";
             this.armarRutinaToolStripMenuItem.Click += new System.EventHandler(this.armarRutinaToolStripMenuItem_Click);
             // 

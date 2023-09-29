@@ -32,6 +32,14 @@ namespace Negocio
         {
             return _MPPSupervisor.QuitarSupervisor(id);
         }
+        public bool ExistenSupervisores()
+        {
+           return _MPPSupervisor.ExistenSupervisores();
+        }
+        public bool CrearAdminInicial(string contraseña)
+        {
+            return _MPPSupervisor.CrearAdminInicial(contraseña);
+        }
 
 
 

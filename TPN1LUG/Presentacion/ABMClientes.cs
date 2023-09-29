@@ -60,18 +60,22 @@ namespace Presentacion
         {
             try
             {
-                dgvClientes.DataSource = null;
-                dgvClientes.DataSource = oBLLCliente.listarClientes();
-                dgvClientes.Columns["oProfesor"].Visible = false;
-                dgvClientes.Columns["Rol"].Visible = false;
-                dgvClientes.Columns["oRutina"].Visible = false;
-                dgvClientes.Columns["oTarjeta"].Visible = false;
-                dgvClientes.Columns["Nombre"].DisplayIndex = 0;
-                dgvClientes.Columns["Apellido"].DisplayIndex = 1;
-                dgvClientes.Columns["Email"].DisplayIndex = 2;
-                dgvClientes.Columns["Peso"].DisplayIndex = 3;
-                dgvClientes.Columns["Fecha_Nacimiento"].DisplayIndex = 4;
-                dgvClientes.Columns["Usuario_ID"].Visible = false;
+                List<Cliente> listaclientes = oBLLCliente.listarClientes();
+                if(listaclientes != null)
+                {
+                    dgvClientes.DataSource = null;
+                    dgvClientes.DataSource = listaclientes;
+                    dgvClientes.Columns["oProfesor"].Visible = false;
+                    dgvClientes.Columns["Rol"].Visible = false;
+                    dgvClientes.Columns["oRutina"].Visible = false;
+                    dgvClientes.Columns["oTarjeta"].Visible = false;
+                    dgvClientes.Columns["Nombre"].DisplayIndex = 0;
+                    dgvClientes.Columns["Apellido"].DisplayIndex = 1;
+                    dgvClientes.Columns["Email"].DisplayIndex = 2;
+                    dgvClientes.Columns["Peso"].DisplayIndex = 3;
+                    dgvClientes.Columns["Fecha_Nacimiento"].DisplayIndex = 4;
+                    dgvClientes.Columns["Usuario_ID"].Visible = false;
+                }
             }
             catch(Exception ex)
             {

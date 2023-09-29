@@ -33,10 +33,20 @@ namespace Presentacion
         }
         private void CargarGrilla()
         {
-            dgvSupervisor.DataSource = null;
-            dgvSupervisor.DataSource = oBLLSupervisor.ListaSupervisores();
-            dgvSupervisor.Columns["Contraseña"].Visible = false;
-            dgvSupervisor.Columns["Usuario_ID"].Visible = false;
+            try
+            {
+                List<Supervisor> listaSupervisor = oBLLSupervisor.ListaSupervisores();
+                if (listaSupervisor != null)
+                {
+                    dgvSupervisor.DataSource = null;
+                    dgvSupervisor.DataSource = listaSupervisor;
+                    dgvSupervisor.Columns["Contraseña"].Visible = false;
+                    dgvSupervisor.Columns["Usuario_ID"].Visible = false;
+                }
+            }catch(Exception ex)
+            {
+                throw ex;
+            }
         }
         private void VaciarCampos()
         {

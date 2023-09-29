@@ -14,7 +14,7 @@ namespace Mapper
         Acceso oDatos;
         public bool AltaProfesor(Profesor profesor)
         {
-            string consultaSQL = $"INSERT INTO Usuario (Nombre,Apellido,Rol,Email,Contraseña,Especializacion)VALUES('{profesor.Nombre}','{profesor.Apellido}',{(int)profesor.Rol},'{profesor.Email}','123456','{profesor.Especializacion}')";
+            string consultaSQL = $"INSERT INTO Usuario (Nombre,Apellido,Rol,Email,Contraseña,Especializacion)VALUES('{profesor.Nombre}','{profesor.Apellido}',{(int)profesor.Rol},'{profesor.Email}','{profesor.Contraseña}','{profesor.Especializacion}')";
             oDatos = new Acceso();
             return oDatos.Escribir(consultaSQL);
         }

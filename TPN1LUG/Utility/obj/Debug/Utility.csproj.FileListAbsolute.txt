@@ -4,3 +4,12 @@ C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Pra
 C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Utility\obj\Debug\Utility.csproj.CoreCompileInputs.cache
 C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Utility\obj\Debug\Utility.dll
 C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Utility\obj\Debug\Utility.pdb
+C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Utility\bin\Debug\Negocio.dll
+C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Utility\bin\Debug\Mapper.dll
+C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Utility\bin\Debug\BE.dll
+C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Utility\bin\Debug\DAL.dll
+C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Utility\bin\Debug\Negocio.pdb
+C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Utility\bin\Debug\Mapper.pdb
+C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Utility\bin\Debug\BE.pdb
+C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Utility\bin\Debug\DAL.pdb
+C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Utility\obj\Debug\Utility.csproj.CopyComplete

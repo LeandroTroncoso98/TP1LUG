@@ -52,5 +52,22 @@ namespace Mapper
             oDatos = new Acceso();
             return oDatos.Escribir(consultaSQL);
         }
+        #region Iniciar supervisor si no existe
+        public bool ExistenSupervisores()
+        {
+            string consultaSQL = "SELECT * FROM Usuario WHERE Rol LIKE 1";
+            oDatos = new Acceso();
+            DataTable table;
+            table = oDatos.Leer(consultaSQL);
+            if (table.Rows.Count > 0) return true;
+            else return false;
+        }
+        public bool CrearAdminInicial(string contraseña)
+        {
+            string consultasql = $"INSERT INTO Usuario (Nombre,Apellido,Email,Rol,Contraseña,Especializacion)VALUES('Admin1','Admin','Admin1@.com',1,'{contraseña}','Jefe')";
+            oDatos = new Acceso();
+            return oDatos.Escribir(consultasql);
+        }
+        #endregion
     }
 }

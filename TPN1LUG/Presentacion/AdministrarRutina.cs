@@ -121,6 +121,9 @@ namespace Presentacion
             dgvEjercicios.DataSource = lista;
             if (dgvEjercicios.Rows.Count > 0) PanelEjercio.Visible = true;
             else PanelEjercio.Visible = false;
+            dgvEjercicios.Columns["Ejercicio_ID"].Visible = false;
+            dgvEjercicios.Columns["Descripcion_Adicional"].Visible = false;
+
         }
         private void btnModificarDia_Click(object sender, EventArgs e)
         {
@@ -159,7 +162,6 @@ namespace Presentacion
             {
                 CargarDGVEjercicios(listaEjercicios);
                 PanelEjercio.Visible = true;
-                dgvEjercicios.Columns["Ejercicio_ID"].Visible = false;
             }
             else
             {

@@ -1,5 +1,6 @@
 ﻿using BE;
 using Negocio;
+using Security;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,7 +20,7 @@ namespace Presentacion
         {
             oBLLProfesor = new BLLProfesor();
             _profesor = new Profesor();
-            InitializeComponent();         
+            InitializeComponent();
         }
         private BLLProfesor oBLLProfesor;
         private Profesor _profesor;
@@ -31,37 +32,50 @@ namespace Presentacion
                 {
                     if (!oBLLProfesor.VerificarMail(txtEmail.Text))
                     {
+                        string pass = GeneradorContraseña.GenerarPassword();
                         Profesor profesor = new Profesor()
                         {
                             Nombre = txtNombre.Text,
                             Apellido = txtApellido.Text,
                             Email = txtEmail.Text,
+                            Contraseña = Encriptador.GenerarMD5(pass),
                             Especializacion = txtEspecializacion.Text,
                             Rol = RolUsuario.Profesor
                         };
                         oBLLProfesor.AltaProfesor(profesor);
                         CargarGrillaEmpleados();
                         VaciarCampos();
+                        MessageBox.Show($"Podra ingresar con el email:{profesor.Email} y contraseña: {pass}");
                     }
                     else MessageBox.Show("Ese email ya se encuentra en uso.", "Error al crear profesor", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw (ex);
             }
         }
         private void CargarGrillaEmpleados()
         {
-            this.dgvEmpleados.DataSource = null;
-            dgvEmpleados.DataSource = oBLLProfesor.ListaProfesores();
-            dgvEmpleados.Columns["Contraseña"].Visible = false;
-            dgvEmpleados.Columns["Usuario_ID"].Visible = false;
-            dgvEmpleados.Columns["Nombre"].DisplayIndex = 0;
-            dgvEmpleados.Columns["Apellido"].DisplayIndex = 1;
-            dgvEmpleados.Columns["Especializacion"].DisplayIndex = 2;
-            dgvEmpleados.Columns["Rol"].DisplayIndex = 3;
-            dgvEmpleados.Columns["Email"].DisplayIndex = 4;
+            try
+            {
+                this.dgvEmpleados.DataSource = null;
+                List<Profesor> listaProfesor = oBLLProfesor.ListaProfesores();
+                if (listaProfesor != null)
+                {
+                    dgvEmpleados.DataSource = listaProfesor;
+                    dgvEmpleados.Columns["Contraseña"].Visible = false;
+                    dgvEmpleados.Columns["Usuario_ID"].Visible = false;
+                    dgvEmpleados.Columns["Nombre"].DisplayIndex = 0;
+                    dgvEmpleados.Columns["Apellido"].DisplayIndex = 1;
+                    dgvEmpleados.Columns["Especializacion"].DisplayIndex = 2;
+                    dgvEmpleados.Columns["Rol"].DisplayIndex = 3;
+                    dgvEmpleados.Columns["Email"].DisplayIndex = 4;
+                }
+            }catch(Exception ex){
+                throw ex;
+            }
+
 
 
         }
@@ -91,9 +105,10 @@ namespace Presentacion
                 txtNombre.Text = _profesor.Nombre;
                 txtApellido.Text = _profesor.Apellido;
                 txtEspecializacion.Text = _profesor.Especializacion;
-                txtEmail.Text = _profesor.Email;               
-            }catch(Exception ex)
-            {                 
+                txtEmail.Text = _profesor.Email;
+            }
+            catch (Exception ex)
+            {
                 MessageBox.Show($"No se puedo seleccionar el profesor. Causa:{ex}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -135,13 +150,17 @@ namespace Presentacion
         {
             try
             {
-                if (!oBLLProfesor.ExisteAsociadoEmpleado(_profesor))
+                if(_profesor != null)
                 {
-                    oBLLProfesor.EliminarUsuario(_profesor.Usuario_ID);
-                    CargarGrillaEmpleados();
-                    VaciarCampos();
-                    _profesor = null;
-                }else MessageBox.Show($"Imposible eliminarlo tiene un cliente asociado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (!oBLLProfesor.ExisteAsociadoEmpleado(_profesor))
+                    {
+                        oBLLProfesor.EliminarUsuario(_profesor.Usuario_ID);
+                        CargarGrillaEmpleados();
+                        VaciarCampos();
+                        _profesor = null;
+                    }
+                    else MessageBox.Show($"Imposible eliminarlo tiene un cliente asociado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             catch (Exception ex)
             {
@@ -154,7 +173,7 @@ namespace Presentacion
         {
             try
             {
-                if(_profesor != null)
+                if (_profesor != null)
                 {
                     oBLLProfesor.AscenderProfesor(_profesor.Usuario_ID);
                     CargarGrillaEmpleados();
@@ -163,7 +182,9 @@ namespace Presentacion
                     _profesor = null;
                     GC.Collect();
                 }
-            }catch(Exception ex){
+            }
+            catch (Exception ex)
+            {
                 MessageBox.Show($"No se pudo realizar el ascenso a supervisor,\n Causa: {ex}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

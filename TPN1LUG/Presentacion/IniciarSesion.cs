@@ -1,5 +1,6 @@
 ﻿using BE;
 using Negocio;
+using Security;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,9 +29,9 @@ namespace Presentacion
         {
             if (VerificadorCampos.VerificarCamposIniciarSesion(txtEmail, txtContra))
             {
-                if (oBLLEmpleado.IniciarSesion(txtEmail.Text, txtContra.Text))
+                if (oBLLEmpleado.IniciarSesion(txtEmail.Text, Encriptador.GenerarMD5(txtContra.Text)))
                 {
-                    Empleado empleado = oBLLEmpleado.HabilitarSesion(txtEmail.Text, txtContra.Text);
+                    Empleado empleado = oBLLEmpleado.HabilitarSesion(txtEmail.Text, Encriptador.GenerarMD5(txtContra.Text));
                     if(empleado != null)
                     {
                         if(empleado.Rol == RolUsuario.Supervisor)

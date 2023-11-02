@@ -19,7 +19,7 @@ namespace Negocio
 
         public bool EliminarUsuario(int id)
         {
-            return oMPPUsuario.EliminarUsuario(id);
+            return oMPPUsuario.Delete(id);
         }
         public bool VerificarMail(string email, int id = 0)
         {

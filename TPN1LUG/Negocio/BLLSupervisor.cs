@@ -22,11 +22,11 @@ namespace Negocio
         }
         public bool AltaSupervisor(Supervisor supervisor)
         {
-            return _MPPSupervisor.AltaSupervisor(supervisor);
+            return _MPPSupervisor.Alta(supervisor);
         }
         public bool ModificarSupervisor(Supervisor supervisor)
         {
-            return _MPPSupervisor.ModificarSupervisor(supervisor);
+            return _MPPSupervisor.Modificar(supervisor);
         }
         public bool QuitarSupervisor(int id)
         {

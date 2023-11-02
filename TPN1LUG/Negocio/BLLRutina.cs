@@ -34,7 +34,7 @@ namespace Negocio
         }
         public bool EliminarRutina(int rutina_ID)
         {
-            return _MPPRutina.EliminarRutina(rutina_ID);
+            return _MPPRutina.Delete(rutina_ID);
         }
 
 

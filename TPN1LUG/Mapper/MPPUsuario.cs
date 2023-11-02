@@ -1,4 +1,5 @@
-﻿using BE;
+﻿using Abstraction;
+using BE;
 using DAL;
 using System;
 using System.Collections.Generic;
@@ -9,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace Mapper
 {
-    public class MPPUsuario
+    public class MPPUsuario : IBorrable
     {
         Acceso oDatos;
-        public bool EliminarUsuario(int id)
+        public bool Delete(int id)
         {
             string ConsultaSQL = $"DELETE FROM Usuario WHERE Usuario_ID = {id}";
             oDatos = new Acceso();

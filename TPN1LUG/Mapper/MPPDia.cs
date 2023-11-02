@@ -1,4 +1,5 @@
-﻿using BE;
+﻿using Abstraction;
+using BE;
 using DAL;
 using System;
 using System.Collections.Generic;
@@ -9,17 +10,17 @@ using System.Threading.Tasks;
 
 namespace Mapper
 {
-    public class MPPDia
+    public class MPPDia : IListable<Dia>, IBorrable
     {
         Acceso oDatos;
         MPPEjercicio _MPPEjercicio;
-        public List<Dia> LeerDias(int rutina_ID)
+        public List<Dia> ListByIdByParent(int id)
         {
             oDatos = new Acceso();
             List<Dia> listaDias = new List<Dia>();
             DataTable table;
             _MPPEjercicio = new MPPEjercicio();
-            string consultaSQL = $"SELECT a.Dia_ID,a.Nombre,a.Tipo_Ejercicio,a.Rutina_ID FROM Dia AS a WHERE a.Rutina_ID LIKE {rutina_ID}";
+            string consultaSQL = $"SELECT a.Dia_ID,a.Nombre,a.Tipo_Ejercicio,a.Rutina_ID FROM Dia AS a WHERE a.Rutina_ID LIKE {id}";
             table = oDatos.Leer(consultaSQL);
             if (table.Rows.Count > 0)
             {
@@ -30,7 +31,7 @@ namespace Mapper
                     dia.Nombre = Convert.ToString(row[1]);
                     dia.Tipo_Ejercicio = Convert.ToString(row[2]);
                     dia.ListaEjercicio = new List<Ejercicio>();
-                    List<Ejercicio> listaEjercicio = _MPPEjercicio.LeerEjericicios(dia.Dia_ID);
+                    List<Ejercicio> listaEjercicio = _MPPEjercicio.ListByIdByParent(dia.Dia_ID);
                     if (listaEjercicio != null)
                     {
                         foreach (Ejercicio ejercicio in listaEjercicio)
@@ -67,7 +68,7 @@ namespace Mapper
             string consultaSQL = $"UPDATE Dia SET Nombre = '{dia.Nombre}',Tipo_Ejercicio = '{dia.Tipo_Ejercicio}' WHERE Dia_ID LIKE {dia.Dia_ID}";
             return oDatos.Escribir(consultaSQL);
         }
-        public bool EliminarDia(int dia_ID)
+        public bool Delete(int dia_ID)
         {
             oDatos = new Acceso();
             string consultaSQL = $"DELETE Dia WHERE Dia_ID LIKE {dia_ID}";

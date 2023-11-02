@@ -18,7 +18,7 @@ namespace Negocio
         MPPProfesor _MPPProfesor;
         public bool AltaProfesor(Profesor profesor)
         {
-            return _MPPProfesor.AltaProfesor(profesor);
+            return _MPPProfesor.Alta(profesor);
         }
         public List<Profesor> ListaProfesores()
         {
@@ -26,7 +26,7 @@ namespace Negocio
         }
         public bool ActualizarProfesor(Profesor profesor)
         {
-            return _MPPProfesor.ActualizarProfesor(profesor);
+            return _MPPProfesor.Modificar(profesor);
         }
         public bool AscenderProfesor(int id)
         {

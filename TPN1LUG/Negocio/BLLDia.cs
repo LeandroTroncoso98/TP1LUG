@@ -18,7 +18,7 @@ namespace Negocio
         MPPDia _MPPDia;
         public List<Dia> LeerDias(int rutina_ID)
         {
-            return _MPPDia.LeerDias(rutina_ID);
+            return _MPPDia.ListByIdByParent(rutina_ID);
         }
         public bool CrearDia(Dia dia, int rutina_ID)
         {
@@ -34,7 +34,7 @@ namespace Negocio
         }
         public bool EliminarDia(int dia_ID)
         {
-            return _MPPDia.EliminarDia(dia_ID);
+            return _MPPDia.Delete(dia_ID);
         }
         public bool ExisteDiaAsociado(int dia_id)
         {

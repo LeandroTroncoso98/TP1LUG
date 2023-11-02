@@ -1,4 +1,5 @@
-﻿using BE;
+﻿using Abstraction;
+using BE;
 using DAL;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Mapper
 {
-    public class MPPRutina
+    public class MPPRutina : IBorrable
     {
         Acceso oDatos;
         MPPDia _MPPDia;
@@ -32,7 +33,7 @@ namespace Mapper
                     rutina.Fecha_Inicio = Convert.ToDateTime(row[1]);
                     rutina.DescripcionGeneral = Convert.ToString(row[2]);
                     rutina.Lista_Dia = new List<Dia>();
-                    List<Dia> listaDias = _MPPDia.LeerDias(rutina.Rutina_ID);
+                    List<Dia> listaDias = _MPPDia.ListByIdByParent(rutina.Rutina_ID);
                     if (listaDias != null)
                     {
                         foreach (Dia dia in listaDias)
@@ -66,7 +67,7 @@ namespace Mapper
             oDatos = new Acceso();
             return oDatos.LeerScalar($"SELECT COUNT(*) FROM Dia WHERE Rutina_ID LIKE {rutina_id}");
         }
-        public bool EliminarRutina(int rutina_ID)
+        public bool Delete(int rutina_ID)
         {
             oDatos = new Acceso();
             return oDatos.Escribir($"DELETE FROM Rutina WHERE Rutina_ID LIKE {rutina_ID}");

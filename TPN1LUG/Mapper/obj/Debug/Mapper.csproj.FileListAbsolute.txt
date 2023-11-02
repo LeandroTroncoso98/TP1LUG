@@ -9,3 +9,5 @@ C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Pra
 C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Mapper\obj\Debug\Mapper.csproj.CopyComplete
 C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Mapper\obj\Debug\Mapper.dll
 C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Mapper\obj\Debug\Mapper.pdb
+C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Mapper\bin\Debug\Abstraction.dll
+C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Mapper\bin\Debug\Abstraction.pdb

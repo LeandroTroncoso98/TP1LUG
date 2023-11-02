@@ -1,4 +1,5 @@
-﻿using BE;
+﻿using Abstraction;
+using BE;
 using DAL;
 using System;
 using System.Collections.Generic;
@@ -9,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace Mapper
 {
-    public class MPPProfesor
+    public class MPPProfesor : IAltaModificable<Profesor>
     {
         Acceso oDatos;
-        public bool AltaProfesor(Profesor profesor)
+        public bool Alta(Profesor profesor)
         {
             string consultaSQL = $"INSERT INTO Usuario (Nombre,Apellido,Rol,Email,Contraseña,Especializacion)VALUES('{profesor.Nombre}','{profesor.Apellido}',{(int)profesor.Rol},'{profesor.Email}','{profesor.Contraseña}','{profesor.Especializacion}')";
             oDatos = new Acceso();
@@ -44,7 +45,7 @@ namespace Mapper
             }
             return listProfesores;
         }
-        public bool ActualizarProfesor(Profesor profesor)
+        public bool Modificar(Profesor profesor)
         {
             string consultaSQL = $"UPDATE Usuario SET Nombre = '{profesor.Nombre}',Apellido = '{profesor.Apellido}',Email='{profesor.Email}',Especializacion='{profesor.Especializacion}' WHERE Usuario_ID LIKE {profesor.Usuario_ID}";
             oDatos = new Acceso();

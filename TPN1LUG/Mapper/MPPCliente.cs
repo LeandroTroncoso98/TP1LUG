@@ -1,4 +1,5 @@
-﻿using BE;
+﻿using Abstraction;
+using BE;
 using DAL;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Mapper
 {
-    public class MPPCliente : MPPUsuario
+    public class MPPCliente : MPPUsuario, IAltaModificable<Cliente>
     {
         Acceso oDatos;
         MPPRutina _MPPRutina;
@@ -45,13 +46,13 @@ namespace Mapper
             else
                 return clientes = null;
         }
-        public bool CrearCliente(Cliente cliente)
+        public bool Alta(Cliente cliente)
         {
             string consultaSQL = $"INSERT INTO Usuario (Nombre,Apellido,Rol,Email,Telefono,Peso,Fecha_Nacimiento,Empleado_ID)VALUES('{cliente.Nombre}','{cliente.Apellido}',{(int)cliente.Rol},'{cliente.Email}',{cliente.Telefono},{cliente.Peso},'{cliente.Fecha_Nacimiento.ToString("yyyy-MM-dd")}',{cliente.oProfesor.Usuario_ID})";
             oDatos = new Acceso();
             return oDatos.Escribir(consultaSQL);
         }
-        public bool EditarCliente(Cliente cliente)
+        public bool Modificar(Cliente cliente)
         {
             string consultaSQL = $"UPDATE Usuario SET Nombre = '{cliente.Nombre}',Apellido = '{cliente.Apellido}',Email = '{cliente.Email}',Telefono = {cliente.Telefono},Peso = '{cliente.Peso}',Fecha_Nacimiento = '{cliente.Fecha_Nacimiento.ToString("yyyy-MM-dd")}',Empleado_ID = {cliente.oProfesor.Usuario_ID} WHERE Usuario_ID LIKE {cliente.Usuario_ID}";
             oDatos = new Acceso();

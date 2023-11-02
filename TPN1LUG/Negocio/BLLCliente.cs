@@ -22,11 +22,11 @@ namespace Negocio
         }
         public bool CrearCliente(Cliente cliente)
         {
-            return oMPPCliente.CrearCliente(cliente);
+            return oMPPCliente.Alta(cliente);
         }
         public bool EditarCliente(Cliente cliente)
         {
-            return oMPPCliente.EditarCliente(cliente);
+            return oMPPCliente.Modificar(cliente);
         }
         public Cliente GetCliente(string email)
         {

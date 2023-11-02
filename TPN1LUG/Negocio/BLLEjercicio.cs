@@ -18,7 +18,7 @@ namespace Negocio
         MPPEjercicio _MPPEjercicio;
         public List<Ejercicio> LeerEjericicios(int dia_id)
         {
-            return _MPPEjercicio.LeerEjericicios(dia_id);
+            return _MPPEjercicio.ListByIdByParent(dia_id);
         }
         public bool CrearEjercicio(Ejercicio ejercicio, int dia_ID)
         {
@@ -30,7 +30,7 @@ namespace Negocio
         }
         public bool EliminarEjercicio(int ejercicio_id)
         {
-            return _MPPEjercicio.EliminarEjercicio(ejercicio_id);
+            return _MPPEjercicio.Delete(ejercicio_id);
         }
 
 

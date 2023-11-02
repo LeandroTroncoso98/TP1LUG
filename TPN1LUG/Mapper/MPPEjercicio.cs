@@ -1,4 +1,5 @@
-﻿using BE;
+﻿using Abstraction;
+using BE;
 using DAL;
 using System;
 using System.Collections.Generic;
@@ -9,15 +10,15 @@ using System.Threading.Tasks;
 
 namespace Mapper
 {
-    public class MPPEjercicio
+    public class MPPEjercicio : IListable<Ejercicio>, IBorrable
     {
         Acceso oDatos;
-        public List<Ejercicio> LeerEjericicios(int dia_id)
+        public List<Ejercicio> ListByIdByParent(int id)
         {
             oDatos = new Acceso();
             DataTable table;
             List<Ejercicio> listaEjercicios = new List<Ejercicio>();
-            string consultaSQL = $"SELECT a.Ejercicio_ID,a.Nombre,a.Series,a.Descripcion_Adicional FROM Ejercicio AS a WHERE a.Dia_ID LIKE {dia_id}";
+            string consultaSQL = $"SELECT a.Ejercicio_ID,a.Nombre,a.Series,a.Descripcion_Adicional FROM Ejercicio AS a WHERE a.Dia_ID LIKE {id}";
             table = oDatos.Leer(consultaSQL);
             if (table.Rows.Count > 0)
             {
@@ -46,7 +47,7 @@ namespace Mapper
             oDatos = new Acceso();
             return oDatos.Escribir(consultaSQL);
         }
-        public bool EliminarEjercicio(int ejercicio_id)
+        public bool Delete(int ejercicio_id)
         {
             string consultaSQL = $"DELETE FROM Ejercicio WHERE Ejercicio_ID LIKE {ejercicio_id}";
             oDatos = new Acceso();

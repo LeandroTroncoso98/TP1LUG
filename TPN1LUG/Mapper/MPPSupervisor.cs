@@ -1,4 +1,5 @@
-﻿using BE;
+﻿using Abstraction;
+using BE;
 using DAL;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Mapper
 {
-    public class MPPSupervisor
+    public class MPPSupervisor : IAltaModificable<Supervisor>
     {
         Acceso oDatos;
         public List<Supervisor> ListaSupervisores()
@@ -34,13 +35,13 @@ namespace Mapper
             else supervisores = null;
             return supervisores;
         }
-        public bool AltaSupervisor(Supervisor supervisor)
+        public bool Alta(Supervisor supervisor)
         {
             string consultaSQL = $"INSERT INTO Usuario (Nombre,Apellido,Email,Rol,Contraseña)VALUES('{supervisor.Nombre}','{supervisor.Apellido}','{supervisor.Email}',{(int)supervisor.Rol},'123456')";
             oDatos = new Acceso();
             return oDatos.Escribir(consultaSQL);
         }
-        public bool ModificarSupervisor(Supervisor supervisor)
+        public bool Modificar(Supervisor supervisor)
         {
             string consultaSQL = $"UPDATE Usuario SET Nombre ='{supervisor.Nombre}',Apellido='{supervisor.Apellido}',Email='{supervisor.Email}' WHERE Usuario_ID LIKE {supervisor.Usuario_ID}";
             oDatos = new Acceso();

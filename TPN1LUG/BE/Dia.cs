@@ -8,6 +8,10 @@ namespace BE
 {
     public class Dia
     {
+        public override string ToString()
+        {
+            return Nombre + " " + Tipo_Ejercicio;
+        }
         public int Dia_ID { get; set; }
         public string Tipo_Ejercicio { get; set; }
         public string Nombre { get; set; }

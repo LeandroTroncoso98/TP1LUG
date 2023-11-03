@@ -44,11 +44,5 @@ namespace Negocio
         {
             return _MPPDia.LeerDia(dia_id);
         }
-
-
-
-
-
-
     }
 }

@@ -2,8 +2,10 @@
 using BE;
 using DAL;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,13 +16,15 @@ namespace Mapper
     {
         Acceso oDatos;
         MPPRutina _MPPRutina;
-
+        private AccesoParametro _accesoParametro;
+        private ArrayList _al;
         public List<Cliente> listarClientes()
         {
             List<Cliente> clientes = new List<Cliente>();
-            oDatos = new Acceso();
+            _accesoParametro = new AccesoParametro();
+            string query = "sp_Clientes_Listar";
             DataTable table;
-            table = oDatos.Leer($"SELECT a.Usuario_ID,a.Nombre,a.Apellido,a.Email,a.Telefono,a.Peso, a.Fecha_Nacimiento, a.Rol,b.Usuario_ID AS Profesor_ID,b.Nombre AS Profeosor, b.Especializacion FROM Usuario AS a LEFT JOIN Usuario AS b ON a.Empleado_ID = b.Usuario_ID WHERE a.Rol LIKE 3");
+            table = _accesoParametro.leer(query, null);
             if (table.Rows.Count > 0)
             {
                 foreach (DataRow row in table.Rows)
@@ -48,23 +52,77 @@ namespace Mapper
         }
         public bool Alta(Cliente cliente)
         {
-            string consultaSQL = $"INSERT INTO Usuario (Nombre,Apellido,Rol,Email,Telefono,Peso,Fecha_Nacimiento,Empleado_ID)VALUES('{cliente.Nombre}','{cliente.Apellido}',{(int)cliente.Rol},'{cliente.Email}',{cliente.Telefono},{cliente.Peso},'{cliente.Fecha_Nacimiento.ToString("yyyy-MM-dd")}',{cliente.oProfesor.Usuario_ID})";
-            oDatos = new Acceso();
-            return oDatos.Escribir(consultaSQL);
+            string query = "sp_Clientes_Alta";
+            _accesoParametro = new AccesoParametro();
+            _al = new ArrayList();
+            SqlParameter prm1 = new SqlParameter("@nombre_cli", SqlDbType.NChar);
+            prm1.Value = cliente.Nombre;
+            _al.Add(prm1);
+            SqlParameter prm2 = new SqlParameter("@apellido_cli", SqlDbType.NChar);
+            prm2.Value = cliente.Apellido;
+            _al.Add(prm2);
+            SqlParameter prm3 = new SqlParameter("@rol_cli", SqlDbType.Int);
+            prm3.Value = cliente.Rol;
+            _al.Add(prm3);
+            SqlParameter prm4 = new SqlParameter("@email_cli", SqlDbType.NVarChar);
+            prm4.Value = cliente.Email;
+            _al.Add(prm4);
+            SqlParameter prm5 = new SqlParameter("@telefono_cli", SqlDbType.Int);
+            prm5.Value = cliente.Telefono;
+            _al.Add(prm5);
+            SqlParameter prm6 = new SqlParameter("@peso_cli", SqlDbType.NVarChar);
+            prm6.Value = cliente.Peso;
+            _al.Add(prm6);
+            SqlParameter prm7 = new SqlParameter("@nacimiento_cli", SqlDbType.DateTime);
+            prm7.Value = cliente.Fecha_Nacimiento;
+            _al.Add(prm7);
+            SqlParameter prm8 = new SqlParameter("@id_profesor", SqlDbType.Int);
+            prm8.Value = cliente.oProfesor.Usuario_ID;
+            _al.Add(prm8);
+            return _accesoParametro.Escribir(query, _al);
         }
         public bool Modificar(Cliente cliente)
         {
-            string consultaSQL = $"UPDATE Usuario SET Nombre = '{cliente.Nombre}',Apellido = '{cliente.Apellido}',Email = '{cliente.Email}',Telefono = {cliente.Telefono},Peso = '{cliente.Peso}',Fecha_Nacimiento = '{cliente.Fecha_Nacimiento.ToString("yyyy-MM-dd")}',Empleado_ID = {cliente.oProfesor.Usuario_ID} WHERE Usuario_ID LIKE {cliente.Usuario_ID}";
-            oDatos = new Acceso();
-            return oDatos.Escribir(consultaSQL);
+            string query = "sp_Clientes_Modificar";
+            _accesoParametro = new AccesoParametro();
+            _al = new ArrayList();
+            SqlParameter prm1 = new SqlParameter("@nombre_cli", SqlDbType.NChar);
+            prm1.Value = cliente.Nombre;
+            _al.Add(prm1);
+            SqlParameter prm2 = new SqlParameter("@apellido_cli", SqlDbType.NChar);
+            prm2.Value = cliente.Apellido;
+            _al.Add(prm2);
+            SqlParameter prm3 = new SqlParameter("@id_cli", SqlDbType.Int);
+            prm3.Value = cliente.Usuario_ID;
+            _al.Add(prm3);
+            SqlParameter prm4 = new SqlParameter("@email_cli", SqlDbType.NVarChar);
+            prm4.Value = cliente.Email;
+            _al.Add(prm4);
+            SqlParameter prm5 = new SqlParameter("@telefono_cli", SqlDbType.Int);
+            prm5.Value = cliente.Telefono;
+            _al.Add(prm5);
+            SqlParameter prm6 = new SqlParameter("@peso_cli", SqlDbType.NVarChar);
+            prm6.Value = cliente.Peso;
+            _al.Add(prm6);
+            SqlParameter prm7 = new SqlParameter("@nacimiento_cli", SqlDbType.DateTime);
+            prm7.Value = cliente.Fecha_Nacimiento;
+            _al.Add(prm7);
+            SqlParameter prm8 = new SqlParameter("@id_profesor", SqlDbType.Int);
+            prm8.Value = cliente.oProfesor.Usuario_ID;
+            _al.Add(prm8);
+            return _accesoParametro.Escribir(query, _al);
         }
 
         public Cliente GetCliente(string email)
         {
-            oDatos = new Acceso();
+            _accesoParametro = new AccesoParametro();
+            _al = new ArrayList();
+            string query = "sp_Clientes_Get";
+            SqlParameter prm1 = new SqlParameter("@email_cli", SqlDbType.NVarChar);
+            prm1.Value = email;
+            _al.Add(prm1);
             DataTable table;
-            string consultaSQL = $"SELECT a.Usuario_ID,a.Nombre,a.Apellido,a.Rol,a.Email,a.Telefono,a.Peso,a.Fecha_Nacimiento,a.Rutina_ID FROM Usuario AS a WHERE a.Rol LIKE 3 AND a.Email LIKE '{email}'";
-            table = oDatos.Leer(consultaSQL);
+            table = _accesoParametro.leer(query, _al);
             if (table.Rows.Count == 1)
             {
                 DataRow row = table.Rows[0];

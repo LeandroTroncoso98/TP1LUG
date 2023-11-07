@@ -2,8 +2,10 @@
 using BE;
 using DAL;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,19 +14,44 @@ namespace Mapper
 {
     public class MPPProfesor : IAltaModificable<Profesor>
     {
-        Acceso oDatos;
+        AccesoParametro _accesoParametro;
+        ArrayList _al;
+
+
         public bool Alta(Profesor profesor)
-        {
-            string consultaSQL = $"INSERT INTO Usuario (Nombre,Apellido,Rol,Email,Contraseña,Especializacion)VALUES('{profesor.Nombre}','{profesor.Apellido}',{(int)profesor.Rol},'{profesor.Email}','{profesor.Contraseña}','{profesor.Especializacion}')";
-            oDatos = new Acceso();
-            return oDatos.Escribir(consultaSQL);
+        {          
+            string query = "sp_Profesor_Alta";
+            _accesoParametro = new AccesoParametro();
+            _al = new ArrayList();
+            SqlParameter prm1 = new SqlParameter("@nombre_profesor", SqlDbType.NChar);
+            prm1.Value = profesor.Nombre;
+            _al.Add(prm1);
+            SqlParameter prm2 = new SqlParameter("@apellido_profesor", SqlDbType.NChar);
+            prm2.Value = profesor.Apellido;
+            _al.Add(prm2);
+            SqlParameter prm3 = new SqlParameter("@rol_profesor", SqlDbType.Int);
+            prm3.Value = profesor.Rol;
+            _al.Add(prm3);
+            SqlParameter prm4 = new SqlParameter("@email_profesor", SqlDbType.NVarChar);
+            prm4.Value = profesor.Email;
+            _al.Add(prm4);
+            SqlParameter prm5 = new SqlParameter("@contraseña_profesor", SqlDbType.NVarChar);
+            prm5.Value = profesor.Contraseña;
+            _al.Add(prm5);
+            SqlParameter prm6 = new SqlParameter("@especializacion_profesor", SqlDbType.NVarChar);
+            prm6.Value = profesor.Especializacion;
+            _al.Add(prm6);
+            return _accesoParametro.Escribir(query, _al);
+
         }
         public List<Profesor> ListaProfesores()
         {
             List<Profesor> listProfesores = new List<Profesor>();
             DataTable table;
-            oDatos = new Acceso();
-            table = oDatos.Leer($"SELECT a.Usuario_ID,a.Nombre,a.Apellido,a.Email,a.Especializacion FROM Usuario AS a WHERE a.Rol LIKE 2");
+            _accesoParametro = new AccesoParametro();
+            string query = "sp_Profesor_ListaProfesores";
+            table = _accesoParametro.leer(query, null);
+            
             if (table.Rows.Count > 0)
             {
                 foreach (DataRow fila in table.Rows)
@@ -47,15 +74,36 @@ namespace Mapper
         }
         public bool Modificar(Profesor profesor)
         {
-            string consultaSQL = $"UPDATE Usuario SET Nombre = '{profesor.Nombre}',Apellido = '{profesor.Apellido}',Email='{profesor.Email}',Especializacion='{profesor.Especializacion}' WHERE Usuario_ID LIKE {profesor.Usuario_ID}";
-            oDatos = new Acceso();
-            return oDatos.Escribir(consultaSQL);
+            string query = "sp_Profesor_Modificar";
+            _accesoParametro = new AccesoParametro();
+            _al = new ArrayList();
+            SqlParameter prm1 = new SqlParameter("@user_id", SqlDbType.Int);
+            prm1.Value = profesor.Usuario_ID;
+            _al.Add(prm1);
+            SqlParameter prm2 = new SqlParameter("@nombre_profesor", SqlDbType.NChar);
+            prm2.Value = profesor.Nombre;
+            _al.Add(profesor.Nombre);
+            SqlParameter prm3 = new SqlParameter("@apellido_profesor", SqlDbType.NChar);
+            prm3.Value = profesor.Apellido;
+            _al.Add(prm3);
+            SqlParameter prm4 = new SqlParameter("@email_profesor", SqlDbType.NVarChar);
+            prm4.Value = profesor.Email;
+            _al.Add(prm4);
+            SqlParameter prm5 = new SqlParameter("@especializacion_profesor", SqlDbType.NVarChar);
+            prm5.Value = profesor.Especializacion;
+            _al.Add(prm5);
+            return _accesoParametro.Escribir(query, _al);
+
         }
         public bool AscenderProfesor(int id)
         {
-            string consultaSQL = $"UPDATE Usuario SET Rol = 1 WHERE Usuario_ID LIKE {id}";
-            oDatos = new Acceso();
-            return oDatos.Escribir(consultaSQL);
+            string query = "sp_Profesor_AscenderProfesor";
+            _accesoParametro = new AccesoParametro();
+            _al = new ArrayList();
+            SqlParameter prm1 = new SqlParameter("@user_id", SqlDbType.Int);
+            prm1.Value = id;
+            _al.Add(prm1);
+            return _accesoParametro.Escribir(query, _al);
         }
     }
 }

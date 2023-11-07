@@ -2,8 +2,10 @@
 using BE;
 using DAL;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,14 +14,19 @@ namespace Mapper
 {
     public class MPPEjercicio : IListable<Ejercicio>, IBorrable
     {
-        Acceso oDatos;
+        private AccesoParametro _accesoParametro;
+        private ArrayList _al;
         public List<Ejercicio> ListByIdByParent(int id)
         {
-            oDatos = new Acceso();
+            _al = new ArrayList();
+            _accesoParametro = new AccesoParametro();
             DataTable table;
             List<Ejercicio> listaEjercicios = new List<Ejercicio>();
-            string consultaSQL = $"SELECT a.Ejercicio_ID,a.Nombre,a.Series,a.Descripcion_Adicional FROM Ejercicio AS a WHERE a.Dia_ID LIKE {id}";
-            table = oDatos.Leer(consultaSQL);
+            string query = "sp_Ejercicio_ListByIdByParent";
+            SqlParameter prm1 = new SqlParameter("@dia_id", SqlDbType.Int);
+            prm1.Value = id;
+            _al.Add(prm1);
+            table = _accesoParametro.leer(query, _al);
             if (table.Rows.Count > 0)
             {
                 foreach (DataRow row in table.Rows)
@@ -37,21 +44,52 @@ namespace Mapper
         }
         public bool CrearEjercicio(Ejercicio ejercicio, int dia_ID)
         {
-            string consultaSQL = $"INSERT INTO Ejercicio (Nombre,Series,Descripcion_Adicional,Dia_ID)VALUES('{ejercicio.Nombre}',{ejercicio.Series},'{ejercicio.Descripcion_Adicional}',{dia_ID})";
-            oDatos = new Acceso();
-            return oDatos.Escribir(consultaSQL);
+            string query = "sp_Ejercicio_CrearEjercicio";
+            _accesoParametro = new AccesoParametro();
+            _al = new ArrayList();
+            SqlParameter prm1 = new SqlParameter("@nombre_eje", SqlDbType.NVarChar);
+            prm1.Value = ejercicio.Nombre;
+            _al.Add(prm1);
+            SqlParameter prm2 = new SqlParameter("@series_eje", SqlDbType.Int);
+            prm2.Value = ejercicio.Series;
+            _al.Add(prm2);
+            SqlParameter prm3 = new SqlParameter("@descrip_eje", SqlDbType.NVarChar);
+            prm3.Value = ejercicio.Descripcion_Adicional;
+            _al.Add(prm3);
+            SqlParameter prm4 = new SqlParameter("@id_dia", SqlDbType.Int);
+            prm4.Value = dia_ID;
+            _al.Add(prm4);
+            return _accesoParametro.Escribir(query, _al);
         }
         public bool EditarEjercicio(Ejercicio ejercicio)
         {
-            string consultaSQL = $"UPDATE Ejercicio SET Nombre = '{ejercicio.Nombre}',Series = {ejercicio.Series},Descripcion_Adicional='{ejercicio.Descripcion_Adicional}' WHERE Ejercicio_ID LIKE {ejercicio.Ejercicio_ID}";
-            oDatos = new Acceso();
-            return oDatos.Escribir(consultaSQL);
+            string query = "sp_Ejercicio_Editar";
+            _accesoParametro = new AccesoParametro();
+            _al = new ArrayList();
+            SqlParameter prm1 = new SqlParameter("@nombre_eje", SqlDbType.NVarChar);
+            prm1.Value = ejercicio.Nombre;
+            _al.Add(prm1);
+            SqlParameter prm2 = new SqlParameter("@series_eje", SqlDbType.Int);
+            prm2.Value = ejercicio.Series;
+            _al.Add(prm2);
+            SqlParameter prm3 = new SqlParameter("@descrip_eje", SqlDbType.NVarChar);
+            prm3.Value = ejercicio.Descripcion_Adicional;
+            _al.Add(prm3);
+            SqlParameter prm4 = new SqlParameter("@id_eje", SqlDbType.Int);
+            prm4.Value = ejercicio.Ejercicio_ID;
+            _al.Add(prm4);
+            return _accesoParametro.Escribir(query, _al);
         }
         public bool Delete(int ejercicio_id)
         {
-            string consultaSQL = $"DELETE FROM Ejercicio WHERE Ejercicio_ID LIKE {ejercicio_id}";
-            oDatos = new Acceso();
-            return oDatos.Escribir(consultaSQL);
+            string query = "sp_Ejercicio_Delete";
+            _accesoParametro = new AccesoParametro();
+            _al = new ArrayList();
+            SqlParameter prm1 = new SqlParameter("@id_eje", SqlDbType.Int);
+            prm1.Value = ejercicio_id;
+            _al.Add(prm1);
+            return _accesoParametro.Escribir(query, _al);
+
         }
     }
 }

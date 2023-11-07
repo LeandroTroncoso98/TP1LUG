@@ -2,8 +2,10 @@
 using BE;
 using DAL;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,22 +14,33 @@ namespace Mapper
 {
     public class MPPUsuario : IBorrable
     {
-        Acceso oDatos;
+        AccesoParametro _accesoParametro;
+        private ArrayList _al;
         public bool Delete(int id)
         {
-            string ConsultaSQL = $"DELETE FROM Usuario WHERE Usuario_ID = {id}";
-            oDatos = new Acceso();
-            return oDatos.Escribir(ConsultaSQL);
+            _al = new ArrayList();
+            string query = "sp_DeleteUsuario";
+            _accesoParametro = new AccesoParametro();
+            SqlParameter parameter = new SqlParameter("@user_id",SqlDbType.Int);
+            parameter.Value = id;
+            _al.Add(parameter);
+            return _accesoParametro.Escribir(query, _al);
         }
         public bool VerificarMail(string email, int id = 0)
         {
-            List<Usuario> usuarios = new List<Usuario>();
             DataTable table;
-            oDatos = new Acceso();
-            table = oDatos.Leer($"SELECT a.Usuario_ID,a.Email FROM Usuario AS a WHERE a.Usuario_ID NOT LIKE '{id}'");
-            if (table.Rows.Count > 0)
+            _al = new ArrayList();
+            _accesoParametro = new AccesoParametro();
+            string query = "sp_VerificarEmail";
+            List<Usuario> usuarios = new List<Usuario>();
+            SqlParameter parameter = new SqlParameter("@user_id", SqlDbType.Int);
+            parameter.Value = id;
+            _al.Add(parameter);
+            
+            table = _accesoParametro.leer(query, _al);
+            if(table.Rows.Count > 0)
             {
-                foreach (DataRow row in table.Rows)
+                foreach(DataRow row in table.Rows)
                 {
                     Usuario usuario = new Usuario()
                     {

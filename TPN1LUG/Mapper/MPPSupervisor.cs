@@ -2,8 +2,10 @@
 using BE;
 using DAL;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,13 +14,14 @@ namespace Mapper
 {
     public class MPPSupervisor : IAltaModificable<Supervisor>
     {
-        Acceso oDatos;
+        AccesoParametro _accesoParametro;
+        private ArrayList _al;
         public List<Supervisor> ListaSupervisores()
         {
             List<Supervisor> supervisores = new List<Supervisor>();
             DataTable table;
-            oDatos = new Acceso();
-            table = oDatos.Leer($"SELECT a.Usuario_ID,a.Nombre,a.Apellido,a.Rol,a.Email FROM Usuario AS a WHERE a.Rol LIKE 1");
+            _accesoParametro = new AccesoParametro();
+            table = _accesoParametro.leer("sp_Supervisor_ListaSupervisores",null);
             if (table.Rows.Count > 0)
             {
                 foreach (DataRow row in table.Rows)
@@ -37,37 +40,71 @@ namespace Mapper
         }
         public bool Alta(Supervisor supervisor)
         {
-            string consultaSQL = $"INSERT INTO Usuario (Nombre,Apellido,Email,Rol,Contraseña)VALUES('{supervisor.Nombre}','{supervisor.Apellido}','{supervisor.Email}',{(int)supervisor.Rol},'123456')";
-            oDatos = new Acceso();
-            return oDatos.Escribir(consultaSQL);
+            string query = "sp_Supervisor_Alta";
+            _accesoParametro = new AccesoParametro();
+            _al = new ArrayList();
+            SqlParameter prm1 = new SqlParameter("@user_nombre", SqlDbType.NChar);
+            prm1.Value = supervisor.Nombre;
+            SqlParameter prm2 = new SqlParameter("@user_apellido", SqlDbType.NVarChar);
+            prm2.Value = supervisor.Apellido;
+            SqlParameter prm3 = new SqlParameter("@user_email", SqlDbType.NVarChar);
+            prm3.Value = supervisor.Email;
+            SqlParameter prm4 = new SqlParameter("@user_rol", SqlDbType.NVarChar);
+            prm4.Value = supervisor.Rol;
+            _al.Add(prm1);
+            _al.Add(prm2);
+            _al.Add(prm3);
+            _al.Add(prm4);
+            return _accesoParametro.Escribir(query, _al);
         }
         public bool Modificar(Supervisor supervisor)
         {
-            string consultaSQL = $"UPDATE Usuario SET Nombre ='{supervisor.Nombre}',Apellido='{supervisor.Apellido}',Email='{supervisor.Email}' WHERE Usuario_ID LIKE {supervisor.Usuario_ID}";
-            oDatos = new Acceso();
-            return oDatos.Escribir(consultaSQL);
+            string query = "sp_QuitarSupervisores";
+            _accesoParametro = new AccesoParametro();
+            _al = new ArrayList();
+            SqlParameter prm1 = new SqlParameter("@user_id", SqlDbType.Int);
+            prm1.Value = supervisor.Usuario_ID;
+            SqlParameter prm2 = new SqlParameter("@user_email", SqlDbType.NVarChar);
+            prm2.Value = supervisor.Email;
+            SqlParameter prm3 = new SqlParameter("@user_apellido", SqlDbType.NChar);
+            prm3.Value = supervisor.Apellido;
+            SqlParameter prm4 = new SqlParameter("@user_nombre", SqlDbType.NChar);
+            prm4.Value = supervisor.Nombre;
+            _al.Add(prm1);
+            _al.Add(prm2);
+            _al.Add(prm3);
+            _al.Add(prm4);
+            return _accesoParametro.Escribir(query, _al);
         }
         public bool QuitarSupervisor(int id)
         {
-            string consultaSQL = $"UPDATE Usuario SET Rol = 2 WHERE Usuario_ID LIKE {id}";
-            oDatos = new Acceso();
-            return oDatos.Escribir(consultaSQL);
+            string query = "sp_QuitarSupervisores";
+            _al = new ArrayList();
+            _accesoParametro = new AccesoParametro();
+            SqlParameter parameter = new SqlParameter("@user_id", SqlDbType.Int);
+            parameter.Value = id;
+            _al.Add(parameter);
+            return _accesoParametro.Escribir(query,_al);
         }
         #region Iniciar supervisor si no existe
         public bool ExistenSupervisores()
         {
-            string consultaSQL = "SELECT * FROM Usuario WHERE Rol LIKE 1";
-            oDatos = new Acceso();
+            string query = "sp_ExistenSupervisores";
+            _accesoParametro = new AccesoParametro();
             DataTable table;
-            table = oDatos.Leer(consultaSQL);
+            table = _accesoParametro.leer(query,null);
             if (table.Rows.Count > 0) return true;
             else return false;
         }
         public bool CrearAdminInicial(string contraseña)
         {
-            string consultasql = $"INSERT INTO Usuario (Nombre,Apellido,Email,Rol,Contraseña,Especializacion)VALUES('Admin1','Admin','Admin1@.com',1,'{contraseña}','Jefe')";
-            oDatos = new Acceso();
-            return oDatos.Escribir(consultasql);
+            _accesoParametro = new AccesoParametro();
+            string query = "sp_CrearAdminInicial";
+            _al = new ArrayList();
+            SqlParameter parameter = new SqlParameter("@contraseña", SqlDbType.NVarChar);
+            parameter.Value = contraseña;
+            _al.Add(parameter);
+            return _accesoParametro.Escribir(query, _al);        
         }
         #endregion
     }

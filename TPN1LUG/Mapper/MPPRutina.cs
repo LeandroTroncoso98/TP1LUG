@@ -2,8 +2,10 @@
 using BE;
 using DAL;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,17 +16,21 @@ namespace Mapper
     {
         Acceso oDatos;
         MPPDia _MPPDia;
-
+        private AccesoParametro _accesoParametro;
+        private ArrayList _al;
 
         public Rutina traerRutina(Cliente cliente)
         {
-            oDatos = new Acceso();
+            _accesoParametro = new AccesoParametro();
+            SqlParameter parameter = new SqlParameter("@email_cliente", SqlDbType.NVarChar);
+            parameter.Value = cliente.Email;
+            _al.Add(parameter);
             DataTable table;
             _MPPDia = new MPPDia();
-            string consultaSQL = $"SELECT a.Rutina_ID,a.Fecha_Inicio,a.Descripcion_General,a.Cliente_id FROM Rutina AS a WHERE a.Cliente_id LIKE (SELECT b.Usuario_ID FROM Usuario AS b WHERE b.Email LIKE '{cliente.Email}')";
+            string query = "sp_Rutina_TraerRutina";
             try
             {
-                table = oDatos.Leer(consultaSQL);
+                table = _accesoParametro.leer(query, _al);
                 if (table.Rows.Count == 1)
                 {
                     DataRow row = table.Rows[0];
@@ -52,25 +58,54 @@ namespace Mapper
         }
         public bool CrearRutina(Rutina rutina, int usuarioID)
         {
-            string consultaSQL = $"INSERT INTO Rutina (Fecha_Inicio,Cliente_id,Descripcion_General)VALUES('{rutina.Fecha_Inicio.ToString("yyyy-MM-dd")}',{usuarioID},'{rutina.DescripcionGeneral}')";
-            oDatos = new Acceso();
-            return oDatos.Escribir(consultaSQL);
+            string query = "sp_Rutina_CrearRutina";
+            _al = new ArrayList();
+            SqlParameter prm1 = new SqlParameter("@FechaInicio_Rutina",SqlDbType.DateTime);
+            prm1.Value = rutina.Fecha_Inicio;
+            SqlParameter prm2 = new SqlParameter("@user_id", SqlDbType.Int);
+            prm2.Value = usuarioID;
+            SqlParameter prm3 = new SqlParameter("@Descrip_Rutina", SqlDbType.NVarChar);
+            _al.Add(prm1);
+            _al.Add(prm2);
+            _al.Add(prm3);
+            return _accesoParametro.Escribir(query, _al);
         }
         public bool EditarRutina(Rutina rutina)
         {
-            string consultaSQL = $"UPDATE Rutina SET Descripcion_General = '{rutina.DescripcionGeneral}',Fecha_Inicio='{rutina.Fecha_Inicio.ToString("yyyy-MM-dd")}' WHERE Rutina_ID LIKE {rutina.Rutina_ID}";
-            oDatos = new Acceso();
-            return oDatos.Escribir(consultaSQL);
+            string query = "sp_Rutina_EditarRutina";
+            _accesoParametro = new AccesoParametro();
+            _al = new ArrayList();
+            SqlParameter prm1 = new SqlParameter("@FechaInicio_Rutina", SqlDbType.DateTime);
+            prm1.Value = rutina.Fecha_Inicio;
+            SqlParameter prm2 = new SqlParameter("@Rutina_id", SqlDbType.Int);
+            prm2.Value = rutina.Rutina_ID;
+            SqlParameter prm3 = new SqlParameter("@Descrip_Rutina", SqlDbType.NVarChar);
+            prm3.Value = rutina.DescripcionGeneral;
+            _al.Add(prm1);
+            _al.Add(prm2);
+            _al.Add(prm3);
+            return _accesoParametro.Escribir(query, _al);
         }
         public bool ExisteRutinaAsociada(int rutina_id)
         {
-            oDatos = new Acceso();
-            return oDatos.LeerScalar($"SELECT COUNT(*) FROM Dia WHERE Rutina_ID LIKE {rutina_id}");
+            string query = "sp_Rutina_ExisteAsociada";
+            _accesoParametro = new AccesoParametro();
+            _al = new ArrayList();
+            SqlParameter prm1 = new SqlParameter("@Rutina_id", SqlDbType.Int);
+            prm1.Value = rutina_id;
+            _al.Add(prm1);
+            return _accesoParametro.LeerScalar(query, _al);
+
         }
         public bool Delete(int rutina_ID)
         {
-            oDatos = new Acceso();
-            return oDatos.Escribir($"DELETE FROM Rutina WHERE Rutina_ID LIKE {rutina_ID}");
+            _accesoParametro = new AccesoParametro();
+            _al = new ArrayList();
+            string query = "sp_Rutina_Delete";
+            SqlParameter parameter = new SqlParameter("@Rutina_id", SqlDbType.Int);
+            parameter.Value = rutina_ID;
+            _al.Add(parameter);
+            return _accesoParametro.Escribir(query, _al);
         }
     }
 }

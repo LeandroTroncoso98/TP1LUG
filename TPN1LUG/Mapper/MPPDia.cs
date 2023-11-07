@@ -2,8 +2,10 @@
 using BE;
 using DAL;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,14 +16,20 @@ namespace Mapper
     {
         Acceso oDatos;
         MPPEjercicio _MPPEjercicio;
+        private AccesoParametro _accesoParametro;
+        private ArrayList _al;
         public List<Dia> ListByIdByParent(int id)
         {
-            oDatos = new Acceso();
+            _accesoParametro = new AccesoParametro();
+            _al = new ArrayList();
+            string query = "sp_Dia_ListByIdByParent";
             List<Dia> listaDias = new List<Dia>();
             DataTable table;
             _MPPEjercicio = new MPPEjercicio();
-            string consultaSQL = $"SELECT a.Dia_ID,a.Nombre,a.Tipo_Ejercicio,a.Rutina_ID FROM Dia AS a WHERE a.Rutina_ID LIKE {id}";
-            table = oDatos.Leer(consultaSQL);
+            SqlParameter prm1 = new SqlParameter("@id_rutina", SqlDbType.Int);
+            prm1.Value = id;
+            _al.Add(prm1);
+            table = _accesoParametro.leer(query, _al);
             if (table.Rows.Count > 0)
             {
                 foreach (DataRow row in table.Rows)
@@ -48,43 +56,82 @@ namespace Mapper
 
         public bool CrearDia(Dia dia, int rutina_ID)
         {
-            oDatos = new Acceso();
-            string consultaSQL = $"INSERT INTO Dia(Nombre,Tipo_Ejercicio,Rutina_ID)VALUES('{dia.Nombre}','{dia.Tipo_Ejercicio}',{rutina_ID})";
-            return oDatos.Escribir(consultaSQL);
+            _accesoParametro = new AccesoParametro();
+            _al = new ArrayList();
+            string query = "sp_Dia_Crear";
+            SqlParameter prm1 = new SqlParameter("@nombre_dia", SqlDbType.NVarChar);
+            prm1.Value = dia.Nombre;
+            _al.Add(prm1);
+            SqlParameter prm2 = new SqlParameter("@tipoEjer_dia", SqlDbType.NVarChar);
+            prm2.Value = dia.Tipo_Ejercicio;
+            _al.Add(prm2);
+            SqlParameter prm3 = new SqlParameter("@id_rutina", SqlDbType.Int);
+            prm3.Value = rutina_ID;
+            _al.Add(prm3);
+            return _accesoParametro.Escribir(query, _al);
         }
         public bool ExisteDia(string nombre, int rutina_ID = 0)
         {
-            oDatos = new Acceso();
-            List<Dia> listaDias = new List<Dia>();
+            _accesoParametro = new AccesoParametro();
+            _al = new ArrayList();
+            string query = "sp_Dia_Existe";
+            SqlParameter prm1 = new SqlParameter("@nombre_dia", SqlDbType.NVarChar);
+            prm1.Value = nombre;
+            _al.Add(prm1);
+            SqlParameter prm2 = new SqlParameter("@id_rutina", SqlDbType.Int);
+            prm2.Value = rutina_ID;
+            _al.Add(prm2);
             DataTable table;
-            string consultaSQL = $"SELECT * FROM Dia WHERE Rutina_ID LIKE {rutina_ID} AND Nombre LIKE '{nombre}'";
-            table = oDatos.Leer(consultaSQL);
+            table = _accesoParametro.leer(query, _al);
             if (table.Rows.Count > 0) return true;
             else return false;
         }
         public bool EditarDia(Dia dia)
         {
-            oDatos = new Acceso();
-            string consultaSQL = $"UPDATE Dia SET Nombre = '{dia.Nombre}',Tipo_Ejercicio = '{dia.Tipo_Ejercicio}' WHERE Dia_ID LIKE {dia.Dia_ID}";
-            return oDatos.Escribir(consultaSQL);
+            string query = "sp_Dia_Editar";
+            _al = new ArrayList();
+            _accesoParametro = new AccesoParametro();
+            SqlParameter prm1 = new SqlParameter("@nombre_dia", SqlDbType.NVarChar);
+            prm1.Value = dia.Nombre;
+            _al.Add(prm1);
+            SqlParameter prm2 = new SqlParameter("@tipoEjer_dia", SqlDbType.NVarChar);
+            prm2.Value = dia.Tipo_Ejercicio;
+            _al.Add(prm2);
+            SqlParameter prm3 = new SqlParameter("@id_dia", SqlDbType.Int);
+            prm3.Value = dia.Dia_ID;
+            _al.Add(prm3);
+            return _accesoParametro.Escribir(query, _al);
         }
         public bool Delete(int dia_ID)
         {
-            oDatos = new Acceso();
-            string consultaSQL = $"DELETE Dia WHERE Dia_ID LIKE {dia_ID}";
-            return oDatos.Escribir(consultaSQL);
+            _accesoParametro = new AccesoParametro();
+            _al = new ArrayList();
+            string query = "sp_Dia_Delete";
+            SqlParameter prm1 = new SqlParameter("@id_dia", SqlDbType.Int);
+            prm1.Value = dia_ID;
+            _al.Add(prm1);
+            return _accesoParametro.Escribir(query, _al);
         }
         public bool ExisteDiaAsociado(int dia_id)
         {
-            oDatos = new Acceso();
-            return oDatos.LeerScalar($"SELECT COUNT(*) FROM Ejercicio WHERE Dia_ID LIKE {dia_id}");
+            string query = "sp_Dia_ExisteAsociado";
+            _al = new ArrayList();
+            _accesoParametro = new AccesoParametro();
+            SqlParameter prm1 = new SqlParameter("@id_dia", SqlDbType.Int);
+            prm1.Value = dia_id;
+            _al.Add(prm1);
+            return _accesoParametro.LeerScalar(query, _al);
         }
         public Dia LeerDia(int id)
         {
-            oDatos = new Acceso();
-            string consultaSQL = $"SELECT a.Dia_ID,a.Nombre,a.Tipo_Ejercicio FROM Dia AS a WHERE a.Dia_ID LIKE {id}";
+            _accesoParametro = new AccesoParametro();
+            _al = new ArrayList();
+            string query = "sp_Dia_leer";
+            SqlParameter prm1 = new SqlParameter("@id_dia", SqlDbType.Int);
+            prm1.Value = id;
+            _al.Add(prm1);
             DataTable table;
-            table = oDatos.Leer(consultaSQL);
+            table = _accesoParametro.leer(query, _al);
             if (table.Rows.Count > 0)
             {
                 DataRow row = table.Rows[0];

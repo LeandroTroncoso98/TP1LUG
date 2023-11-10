@@ -29,33 +29,39 @@ namespace Presentacion
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.PanelDia = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
             this.cbxDias = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnBuscar = new System.Windows.Forms.Button();
-            this.dgvEjercicios = new System.Windows.Forms.DataGridView();
-            this.label4 = new System.Windows.Forms.Label();
             this.flpDescripcionEjercicio = new System.Windows.Forms.FlowLayoutPanel();
             this.label6 = new System.Windows.Forms.Label();
             this.lblDescripcionEJercicio = new System.Windows.Forms.Label();
+            this.txtDescripcionGeneral = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.dgvEjercicios = new System.Windows.Forms.DataGridView();
+            this.btnBuscar = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.lblNombre = new System.Windows.Forms.Label();
             this.lblApellido = new System.Windows.Forms.Label();
             this.lblPeso = new System.Windows.Forms.Label();
-            this.btnMostrar = new System.Windows.Forms.Button();
-            this.txtDescripcionGeneral = new System.Windows.Forms.Label();
+            this.btnGenerarReporte = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.DiaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.PanelDia.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEjercicios)).BeginInit();
             this.flpDescripcionEjercicio.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEjercicios)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DiaBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -87,13 +93,22 @@ namespace Presentacion
             // 
             // PanelDia
             // 
-            this.PanelDia.Controls.Add(this.btnMostrar);
             this.PanelDia.Controls.Add(this.cbxDias);
             this.PanelDia.Controls.Add(this.label3);
             this.PanelDia.Location = new System.Drawing.Point(17, 345);
             this.PanelDia.Name = "PanelDia";
-            this.PanelDia.Size = new System.Drawing.Size(248, 90);
+            this.PanelDia.Size = new System.Drawing.Size(248, 63);
             this.PanelDia.TabIndex = 3;
+            // 
+            // cbxDias
+            // 
+            this.cbxDias.FormattingEnabled = true;
+            this.cbxDias.Location = new System.Drawing.Point(59, 22);
+            this.cbxDias.Name = "cbxDias";
+            this.cbxDias.Size = new System.Drawing.Size(171, 21);
+            this.cbxDias.TabIndex = 5;
+            this.cbxDias.SelectedIndexChanged += new System.EventHandler(this.cbxDias_SelectedIndexChanged);
+            this.cbxDias.SelectedValueChanged += new System.EventHandler(this.cbxDias_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -105,15 +120,6 @@ namespace Presentacion
             this.label3.TabIndex = 4;
             this.label3.Text = "Días:";
             // 
-            // cbxDias
-            // 
-            this.cbxDias.FormattingEnabled = true;
-            this.cbxDias.Location = new System.Drawing.Point(59, 22);
-            this.cbxDias.Name = "cbxDias";
-            this.cbxDias.Size = new System.Drawing.Size(171, 21);
-            this.cbxDias.TabIndex = 5;
-            this.cbxDias.SelectedIndexChanged += new System.EventHandler(this.cbxDias_SelectedIndexChanged);
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.flpDescripcionEjercicio);
@@ -123,50 +129,6 @@ namespace Presentacion
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(321, 417);
             this.panel1.TabIndex = 6;
-            // 
-            // btnBuscar
-            // 
-            this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBuscar.ForeColor = System.Drawing.Color.White;
-            this.btnBuscar.Location = new System.Drawing.Point(190, 97);
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(75, 23);
-            this.btnBuscar.TabIndex = 7;
-            this.btnBuscar.Text = "Buscar";
-            this.btnBuscar.UseVisualStyleBackColor = true;
-            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
-            // 
-            // dgvEjercicios
-            // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.dgvEjercicios.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvEjercicios.BackgroundColor = System.Drawing.SystemColors.Highlight;
-            this.dgvEjercicios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.HotTrack;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvEjercicios.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvEjercicios.Location = new System.Drawing.Point(3, 3);
-            this.dgvEjercicios.Name = "dgvEjercicios";
-            this.dgvEjercicios.Size = new System.Drawing.Size(315, 243);
-            this.dgvEjercicios.TabIndex = 8;
-            this.dgvEjercicios.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEjercicios_CellClick);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(3, 249);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(171, 20);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Detalle del ejercicio:";
             // 
             // flpDescripcionEjercicio
             // 
@@ -193,6 +155,58 @@ namespace Presentacion
             this.lblDescripcionEJercicio.Name = "lblDescripcionEJercicio";
             this.lblDescripcionEJercicio.Size = new System.Drawing.Size(0, 13);
             this.lblDescripcionEJercicio.TabIndex = 6;
+            // 
+            // txtDescripcionGeneral
+            // 
+            this.txtDescripcionGeneral.AutoSize = true;
+            this.txtDescripcionGeneral.Location = new System.Drawing.Point(15, 0);
+            this.txtDescripcionGeneral.Name = "txtDescripcionGeneral";
+            this.txtDescripcionGeneral.Size = new System.Drawing.Size(0, 13);
+            this.txtDescripcionGeneral.TabIndex = 13;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(3, 249);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(171, 20);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Detalle del ejercicio:";
+            // 
+            // dgvEjercicios
+            // 
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.dgvEjercicios.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvEjercicios.BackgroundColor = System.Drawing.SystemColors.Highlight;
+            this.dgvEjercicios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvEjercicios.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvEjercicios.Location = new System.Drawing.Point(3, 3);
+            this.dgvEjercicios.Name = "dgvEjercicios";
+            this.dgvEjercicios.Size = new System.Drawing.Size(315, 243);
+            this.dgvEjercicios.TabIndex = 8;
+            this.dgvEjercicios.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEjercicios_CellClick);
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBuscar.ForeColor = System.Drawing.Color.White;
+            this.btnBuscar.Location = new System.Drawing.Point(190, 97);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(75, 23);
+            this.btnBuscar.TabIndex = 7;
+            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // label5
             // 
@@ -245,32 +259,54 @@ namespace Presentacion
             this.lblPeso.Size = new System.Drawing.Size(0, 13);
             this.lblPeso.TabIndex = 12;
             // 
-            // btnMostrar
+            // btnGenerarReporte
             // 
-            this.btnMostrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMostrar.ForeColor = System.Drawing.Color.White;
-            this.btnMostrar.Location = new System.Drawing.Point(155, 49);
-            this.btnMostrar.Name = "btnMostrar";
-            this.btnMostrar.Size = new System.Drawing.Size(75, 23);
-            this.btnMostrar.TabIndex = 13;
-            this.btnMostrar.Text = "Mostrar";
-            this.btnMostrar.UseVisualStyleBackColor = true;
-            this.btnMostrar.Click += new System.EventHandler(this.btnMostrar_Click);
+            this.btnGenerarReporte.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGenerarReporte.ForeColor = System.Drawing.Color.White;
+            this.btnGenerarReporte.Location = new System.Drawing.Point(1148, 18);
+            this.btnGenerarReporte.Name = "btnGenerarReporte";
+            this.btnGenerarReporte.Size = new System.Drawing.Size(141, 32);
+            this.btnGenerarReporte.TabIndex = 13;
+            this.btnGenerarReporte.Text = "Generar Reporte";
+            this.btnGenerarReporte.UseVisualStyleBackColor = true;
+            this.btnGenerarReporte.Click += new System.EventHandler(this.btnGenerarReporte_Click);
             // 
-            // txtDescripcionGeneral
+            // label9
             // 
-            this.txtDescripcionGeneral.AutoSize = true;
-            this.txtDescripcionGeneral.Location = new System.Drawing.Point(15, 0);
-            this.txtDescripcionGeneral.Name = "txtDescripcionGeneral";
-            this.txtDescripcionGeneral.Size = new System.Drawing.Size(0, 13);
-            this.txtDescripcionGeneral.TabIndex = 13;
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(608, 24);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(79, 20);
+            this.label9.TabIndex = 14;
+            this.label9.Text = "Reporte:";
+            // 
+            // reportViewer1
+            // 
+            reportDataSource1.Name = "DataSet1";
+            reportDataSource1.Value = this.DiaBindingSource;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "Presentacion.Report1.rdlc";
+            this.reportViewer1.Location = new System.Drawing.Point(612, 56);
+            this.reportViewer1.Name = "reportViewer1";
+            this.reportViewer1.ServerReport.BearerToken = null;
+            this.reportViewer1.Size = new System.Drawing.Size(679, 420);
+            this.reportViewer1.TabIndex = 15;
+            // 
+            // DiaBindingSource
+            // 
+            this.DiaBindingSource.DataMember = "ListaEjercicio";
+            this.DiaBindingSource.DataSource = typeof(BE.Dia);
             // 
             // FormConsultarRutina
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.ClientSize = new System.Drawing.Size(616, 450);
+            this.ClientSize = new System.Drawing.Size(1301, 488);
+            this.Controls.Add(this.reportViewer1);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.btnGenerarReporte);
             this.Controls.Add(this.lblPeso);
             this.Controls.Add(this.lblApellido);
             this.Controls.Add(this.lblNombre);
@@ -291,9 +327,10 @@ namespace Presentacion
             this.PanelDia.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEjercicios)).EndInit();
             this.flpDescripcionEjercicio.ResumeLayout(false);
             this.flpDescripcionEjercicio.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEjercicios)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DiaBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -320,7 +357,10 @@ namespace Presentacion
         private System.Windows.Forms.Label lblNombre;
         private System.Windows.Forms.Label lblApellido;
         private System.Windows.Forms.Label lblPeso;
-        private System.Windows.Forms.Button btnMostrar;
         private System.Windows.Forms.Label txtDescripcionGeneral;
+        private System.Windows.Forms.Button btnGenerarReporte;
+        private System.Windows.Forms.Label label9;
+        private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
+        private System.Windows.Forms.BindingSource DiaBindingSource;
     }
 }

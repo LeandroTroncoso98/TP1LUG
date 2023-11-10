@@ -26,41 +26,50 @@ namespace Presentacion
         private BLLEjercicio oBLLEjercicio;
         private Cliente _cliente;
         private Ejercicio _ejercicio;
+        private Dia _dia;
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(txtEmail.Text))
+            try
             {
-                _cliente = oBLLCliente.GetCliente(txtEmail.Text);
-                if(_cliente != null)
+                if (!string.IsNullOrWhiteSpace(txtEmail.Text))
                 {
-                    lblNombre.Text = _cliente.Nombre;
-                    lblApellido.Text = _cliente.Apellido;
-                    lblPeso.Text = $"{_cliente.Peso} KG.";
-                    if(_cliente.oRutina.Lista_Dia.Count > 0)
+                    _cliente = oBLLCliente.GetCliente(txtEmail.Text);
+                    if (_cliente != null)
                     {
-                        PanelDia.Visible = true;
-                        CargarCBDias();
+                        lblNombre.Text = _cliente.Nombre;
+                        lblApellido.Text = _cliente.Apellido;
+                        lblPeso.Text = $"{_cliente.Peso} KG.";
+                        if (_cliente.oRutina.Lista_Dia.Count > 0)
+                        {
+                            CargarCBDias();
+                            PanelDia.Visible = true;
+                        }
+                    }
+                    else
+                    {
+                        PanelDia.Visible = false;
+                        lblNombre.Text = "";
+                        lblApellido.Text = "";
+                        lblPeso.Text = "";
                     }
                 }
                 else
                 {
-                    PanelDia.Visible = false;
-                    lblNombre.Text = "";
-                    lblApellido.Text = "";
-                    lblPeso.Text = "";
+                    MessageBox.Show("Debe ingresar su mail para continuar.");
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Debe ingresar su mail para continuar.");
+                MessageBox.Show($"Error al buscar resultado.\nCausa: {ex}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void CargarCBDias()
+        private bool CargarCBDias()
         {
             cbxDias.DataSource = _cliente.oRutina.Lista_Dia;
             cbxDias.ValueMember = "Dia_ID";
             cbxDias.DisplayMember = "Nombre";
+            return true;
         }
 
         private void FormConsultarRutina_Load(object sender, EventArgs e)
@@ -71,38 +80,44 @@ namespace Presentacion
             dgvEjercicios.MultiSelect = false;
             dgvEjercicios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             PanelDia.Visible = false;
+            btnGenerarReporte.Visible = false;
 
+            this.reportViewer1.RefreshReport();
         }
 
         private void cbxDias_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-        }
-        public void CargarDGVEjercicios(List<Ejercicio> lista)
-        {
-            dgvEjercicios.DataSource = null;
-            dgvEjercicios.DataSource = lista;
-        }
-
-        private void btnMostrar_Click(object sender, EventArgs e)
-        {
             try
             {
-                int dia_ID = (int)cbxDias.SelectedValue;
-                List<Ejercicio> listaEjercicios = oBLLEjercicio.LeerEjericicios(dia_ID);
-                if (listaEjercicios != null)
+                if (CargarCBDias() == true)//Para que no genere una excepcion al traer la rutina del usuario 
                 {
-                    CargarDGVEjercicios(listaEjercicios);
-                    dgvEjercicios.Columns["Ejercicio_ID"].Visible = false;
-                    dgvEjercicios.Columns["Descripcion_Adicional"].Visible = false;
+                    int dia_ID = (int)cbxDias.SelectedValue;
+                    _dia = _cliente.oRutina.Lista_Dia.FirstOrDefault(m => m.Dia_ID == dia_ID);
+                    List<Ejercicio> listaEjercicios = _dia.ListaEjercicio.ToList();
+                    if (listaEjercicios != null)
+                    {
+                        CargarDGVEjercicios(listaEjercicios);
+                        dgvEjercicios.Columns["Ejercicio_ID"].Visible = false;
+                        dgvEjercicios.Columns["Descripcion_Adicional"].Visible = false;
+                        if (listaEjercicios.Count > 0) btnGenerarReporte.Visible = true;
+                    }
+                    else MessageBox.Show("No posee ejercicios ese dia.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                else MessageBox.Show("No posee ejercicios ese dia.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 throw ex;
             }
-
         }
+        private void CargarDGVEjercicios(List<Ejercicio> lista)
+        {
+            dgvEjercicios.DataSource = null;
+            if (lista != null)
+            {
+                dgvEjercicios.DataSource = lista;
+            }
+        }
+
 
         private void dgvEjercicios_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -111,9 +126,19 @@ namespace Presentacion
                 _ejercicio = (Ejercicio)dgvEjercicios.CurrentRow.DataBoundItem;
                 txtDescripcionGeneral.Text = _ejercicio.Descripcion_Adicional;
 
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+
+        private void btnGenerarReporte_Click(object sender, EventArgs e)
+        {
+            if (_dia.ListaEjercicio.Count > 0)
+            {
+                reportViewer1.LocalReport.DataSources[0].Value = _dia.ListaEjercicio;
+                reportViewer1.RefreshReport();
             }
         }
     }

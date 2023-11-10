@@ -14,7 +14,6 @@ namespace Mapper
 {
     public class MPPCliente : MPPUsuario, IAltaModificable<Cliente>
     {
-        Acceso oDatos;
         MPPRutina _MPPRutina;
         private AccesoParametro _accesoParametro;
         private ArrayList _al;

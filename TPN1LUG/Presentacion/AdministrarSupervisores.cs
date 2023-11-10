@@ -19,10 +19,12 @@ namespace Presentacion
         {
             oBLLSupervisor = new BLLSupervisor();
             _supervisor = new Supervisor();
+            _verificador = new VerificadorRegexSupervisor();
             InitializeComponent();
         }
         private BLLSupervisor oBLLSupervisor;
         private Supervisor _supervisor;
+        private VerificadorRegexSupervisor _verificador;
         private void AdministrarSupervisores_Load(object sender, EventArgs e)
         {
             CargarGrilla();
@@ -58,7 +60,8 @@ namespace Presentacion
         {
             try
             {
-                if (VerificadorCampos.VerificarCamposSupervisor(txtNombre, txtApellido, txtEmail))
+                
+                if (_verificador.CheckForm(txtNombre,txtApellido,txtEmail))
                 {
                     if (!oBLLSupervisor.VerificarMail(txtEmail.Text.Trim()))
                     {
@@ -88,7 +91,7 @@ namespace Presentacion
         {
             if(_supervisor != null)
             {
-                if (VerificadorCampos.VerificarCamposSupervisor(txtNombre, txtApellido, txtEmail))
+                if (_verificador.CheckForm(txtNombre, txtApellido, txtEmail))
                 {
                     if (!oBLLSupervisor.VerificarMail(txtEmail.Text, _supervisor.Usuario_ID))
                     {
@@ -107,7 +110,6 @@ namespace Presentacion
                     }
                     else MessageBox.Show("Ese email ya se encuentra en uso.", "Error de administracion de supervisor", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                else MessageBox.Show($"Los campos son obligatorios.", "Error de administracion de supervisor", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else MessageBox.Show($"Debes seleccionar a un supervisor para editar", "Error de administracion de supervisor", MessageBoxButtons.OK, MessageBoxIcon.Error);
 

@@ -22,6 +22,7 @@ namespace Mapper
         public Rutina traerRutina(Cliente cliente)
         {
             _accesoParametro = new AccesoParametro();
+            _al = new ArrayList();
             SqlParameter parameter = new SqlParameter("@email_cliente", SqlDbType.NVarChar);
             parameter.Value = cliente.Email;
             _al.Add(parameter);

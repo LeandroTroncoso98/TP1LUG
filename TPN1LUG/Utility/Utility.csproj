@@ -46,6 +46,10 @@
     <Compile Include="IniciadorSupervisor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VerificadorCampos.cs" />
+    <Compile Include="VerificadorRegexSupervisor.cs" />
+    <Compile Include="VerificadorRegexClientes.cs" />
+    <Compile Include="VerificadorRegexProfesor.cs" />
+    <Compile Include="VerificadorRegex.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Negocio\Negocio.csproj">

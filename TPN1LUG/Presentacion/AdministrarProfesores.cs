@@ -20,15 +20,17 @@ namespace Presentacion
         {
             oBLLProfesor = new BLLProfesor();
             _profesor = new Profesor();
+            _verificador = new VerificadorRegexProfesor();
             InitializeComponent();
         }
         private BLLProfesor oBLLProfesor;
         private Profesor _profesor;
+        private VerificadorRegexProfesor _verificador;
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             try
             {
-                if (VerificadorCampos.VerificarCamposProfesor(txtNombre, txtApellido, txtEmail, txtEspecializacion))
+                if (_verificador.CheckForm(txtNombre, txtApellido, txtEmail, txtEspecializacion))
                 {
                     if (!oBLLProfesor.VerificarMail(txtEmail.Text))
                     {
@@ -117,7 +119,7 @@ namespace Presentacion
         {
             try
             {
-                if (VerificadorCampos.VerificarCamposProfesor(txtNombre, txtApellido, txtEmail, txtEspecializacion))
+                if (_verificador.CheckForm(txtNombre, txtApellido, txtEmail, txtEspecializacion))
                 {
                     if (!oBLLProfesor.VerificarMail(txtEmail.Text, _profesor.Usuario_ID))
                     {
@@ -137,8 +139,6 @@ namespace Presentacion
                     }
                     else MessageBox.Show("Ese email ya se encuentra en uso.", "Error al crear profesor", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                else MessageBox.Show($"Todos los campos son obligatorios", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
             }
             catch (Exception ex)
             {

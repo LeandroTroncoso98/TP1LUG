@@ -12,5 +12,9 @@ namespace BE
         public string Nombre { get; set; }
         public int Series { get; set; }
         public string Descripcion_Adicional { get; set; }
+        public override string ToString()
+        {
+            return Nombre + " " + Series;
+        }
     }
 }

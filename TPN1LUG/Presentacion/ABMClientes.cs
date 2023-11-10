@@ -21,11 +21,13 @@ namespace Presentacion
             oBLLCliente = new BLLCliente();
             _cliente = new Cliente();
             _cliente.oProfesor = new Profesor();
+            _verificador = new VerificadorRegexClientes();
             InitializeComponent();
         }
         private BLLProfesor oBLLProfesor;
         private BLLCliente oBLLCliente;
         private Cliente _cliente;
+        private VerificadorRegexClientes _verificador;
         private void ABMClientes_Load(object sender, EventArgs e)
         {
             dgvClientes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -61,7 +63,7 @@ namespace Presentacion
             try
             {
                 List<Cliente> listaclientes = oBLLCliente.listarClientes();
-                if(listaclientes != null)
+                if (listaclientes != null)
                 {
                     dgvClientes.DataSource = null;
                     dgvClientes.DataSource = listaclientes;
@@ -77,7 +79,7 @@ namespace Presentacion
                     dgvClientes.Columns["Usuario_ID"].Visible = false;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show($"No se pudo cargar la grilla.\nCausa: {ex}", "Error de carga", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -87,33 +89,23 @@ namespace Presentacion
         {
             try
             {
-                if (VerificadorCampos.VerificarCamposCliente(txtNombre, txtApellido, txtEmail, txtTelefono, txtPeso))
+                if (_verificador.CheckForm(txtNombre, txtApellido, txtEmail, txtTelefono, txtPeso))
                 {
-                    if(VerificadorCampos.verificarCampoInt(txtTelefono))
-                    {
-                        if (VerificadorCampos.VerificarCampoFloat(txtPeso))
-                        {
-                            Cliente cliente = new Cliente();
-                            cliente.Nombre = txtNombre.Text;
-                            cliente.Apellido = txtApellido.Text;
-                            cliente.Rol = RolUsuario.Cliente;
-                            cliente.Email = txtEmail.Text;
-                            cliente.Telefono = Convert.ToInt32(txtTelefono.Text);
-                            cliente.Peso = txtPeso.Text.Replace(',','.');
-                            cliente.Fecha_Nacimiento = dtpFechaNacimiento.Value;
-                            cliente.oProfesor = new Profesor();
-                            cliente.oProfesor.Usuario_ID = (int)cbxProfesores.SelectedValue;
-                            oBLLCliente.CrearCliente(cliente);
-                            CargarGrillaClientes();
-                            resetearFormulario();
-                            MessageBox.Show("Cliente creado con exito.");
-                        }
-                        else MessageBox.Show($"Verificar si el campo de peso es correcto.", "Error de administracion de cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    else MessageBox.Show($"Verificar si el campo de telefono es correcto.", "Error de administracion de cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Cliente cliente = new Cliente();
+                    cliente.Nombre = txtNombre.Text.Trim();
+                    cliente.Apellido = txtApellido.Text.Trim();
+                    cliente.Rol = RolUsuario.Cliente;
+                    cliente.Email = txtEmail.Text.Trim();
+                    cliente.Telefono = Convert.ToInt32(txtTelefono.Text);
+                    cliente.Peso = txtPeso.Text.Replace(',', '.').Trim();
+                    cliente.Fecha_Nacimiento = dtpFechaNacimiento.Value;
+                    cliente.oProfesor = new Profesor();
+                    cliente.oProfesor.Usuario_ID = (int)cbxProfesores.SelectedValue;
+                    oBLLCliente.CrearCliente(cliente);
+                    CargarGrillaClientes();
+                    resetearFormulario();
+                    MessageBox.Show("Cliente creado con exito.");
                 }
-                else MessageBox.Show($"Todos los campos son obligatorios.", "Error de administracion de cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
             }
             catch (Exception ex)
             {
@@ -132,7 +124,8 @@ namespace Presentacion
                 txtPeso.Text = _cliente.Peso;
                 dtpFechaNacimiento.Value = _cliente.Fecha_Nacimiento;
                 cbxProfesores.SelectedValue = _cliente.oProfesor.Usuario_ID;
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show($"No se pudo seleccionar el cliente.\nCausa: {ex}", "Error de administracion de cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -142,40 +135,31 @@ namespace Presentacion
         {
             try
             {
-                if(_cliente != null)
+                if (_cliente != null)
                 {
-                    if (VerificadorCampos.VerificarCamposCliente(txtNombre, txtApellido, txtEmail, txtTelefono, txtPeso))
+                    if (_verificador.CheckForm(txtNombre, txtApellido, txtEmail, txtTelefono, txtPeso))
                     {
-                        if (VerificadorCampos.verificarCampoInt(txtTelefono))
-                        {
-                            if (VerificadorCampos.VerificarCampoFloat(txtPeso))
-                            {
-                                Cliente cliente = new Cliente();
-                                cliente.Usuario_ID = _cliente.Usuario_ID;
-                                cliente.Nombre = txtNombre.Text;
-                                cliente.Apellido = txtApellido.Text;
-                                cliente.Rol = RolUsuario.Cliente;
-                                cliente.Email = txtEmail.Text;
-                                cliente.Telefono = Convert.ToInt32(txtTelefono.Text);
-                                cliente.Peso = txtPeso.Text.Replace(',', '.');
-                                cliente.Fecha_Nacimiento = dtpFechaNacimiento.Value;
-                                cliente.oProfesor = new Profesor();
-                                cliente.oProfesor.Usuario_ID = (int)cbxProfesores.SelectedValue;
-                                oBLLCliente.EditarCliente(cliente);
-                                MessageBox.Show("se ha modificado el cliente.");
-                                CargarCBProfesor();
-                                CargarGrillaClientes();
-                                resetearFormulario();
-                            }
-                            else MessageBox.Show($"El formato de peso es incorrecto.", "Error de administracion de cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                        else MessageBox.Show($"El numero de telefono ingresado no es valido", "Error de administracion de cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Cliente cliente = new Cliente();
+                        cliente.Usuario_ID = _cliente.Usuario_ID;
+                        cliente.Nombre = txtNombre.Text.Trim();
+                        cliente.Apellido = txtApellido.Text.Trim();
+                        cliente.Rol = RolUsuario.Cliente;
+                        cliente.Email = txtEmail.Text.Trim();
+                        cliente.Telefono = Convert.ToInt32(txtTelefono.Text);
+                        cliente.Peso = txtPeso.Text.Replace(',', '.').Trim();
+                        cliente.Fecha_Nacimiento = dtpFechaNacimiento.Value;
+                        cliente.oProfesor = new Profesor();
+                        cliente.oProfesor.Usuario_ID = (int)cbxProfesores.SelectedValue;
+                        oBLLCliente.EditarCliente(cliente);
+                        MessageBox.Show("se ha modificado el cliente.");
+                        CargarCBProfesor();
+                        CargarGrillaClientes();
+                        resetearFormulario();
                     }
-                    else MessageBox.Show($"Debe completar todos los campos.", "Error de administracion de cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else MessageBox.Show($"Debe seleccionar un cliente.", "Error de administracion de cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show($"No se pudo modificar el cliente.\nCausa: {ex}", "Error de administracion de cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -185,7 +169,7 @@ namespace Presentacion
         {
             try
             {
-                if(_cliente != null)
+                if (_cliente != null)
                 {
                     oBLLCliente.EliminarUsuario(_cliente.Usuario_ID);
                     CargarCBProfesor();

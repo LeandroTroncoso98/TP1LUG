@@ -45,15 +45,12 @@ namespace Presentacion
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnModif = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
-            this.tP1LUGDataSet = new Presentacion.TP1LUGDataSet();
             this.usuarioBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.usuarioTableAdapter = new Presentacion.TP1LUGDataSetTableAdapters.UsuarioTableAdapter();
             this.btnAscenderSupervisor = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpleados)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tP1LUGDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.usuarioBindingSource)).BeginInit();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -198,20 +195,6 @@ namespace Presentacion
             this.label7.TabIndex = 13;
             this.label7.Text = "LISTA DE PROFESORES";
             // 
-            // tP1LUGDataSet
-            // 
-            this.tP1LUGDataSet.DataSetName = "TP1LUGDataSet";
-            this.tP1LUGDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // usuarioBindingSource
-            // 
-            this.usuarioBindingSource.DataMember = "Usuario";
-            this.usuarioBindingSource.DataSource = this.tP1LUGDataSet;
-            // 
-            // usuarioTableAdapter
-            // 
-            this.usuarioTableAdapter.ClearBeforeFill = true;
-            // 
             // btnAscenderSupervisor
             // 
             this.btnAscenderSupervisor.Location = new System.Drawing.Point(3, 28);
@@ -260,7 +243,6 @@ namespace Presentacion
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpleados)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tP1LUGDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.usuarioBindingSource)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -286,9 +268,7 @@ namespace Presentacion
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnModif;
         private System.Windows.Forms.Label label7;
-        private TP1LUGDataSet tP1LUGDataSet;
         private System.Windows.Forms.BindingSource usuarioBindingSource;
-        private TP1LUGDataSetTableAdapters.UsuarioTableAdapter usuarioTableAdapter;
         private System.Windows.Forms.Button btnAscenderSupervisor;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label6;

@@ -46,6 +46,7 @@
     <Compile Include="Dia.cs" />
     <Compile Include="Ejercicio.cs" />
     <Compile Include="Empleado.cs" />
+    <Compile Include="Maquina.cs" />
     <Compile Include="Profesor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RolUsuario.cs" />

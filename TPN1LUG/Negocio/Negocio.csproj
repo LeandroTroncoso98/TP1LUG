@@ -45,6 +45,7 @@
     <Compile Include="BLLDia.cs" />
     <Compile Include="BLLEjercicio.cs" />
     <Compile Include="BLLEmpleado.cs" />
+    <Compile Include="BLLMaquina.cs" />
     <Compile Include="BLLProfesor.cs" />
     <Compile Include="BLLRutina.cs" />
     <Compile Include="BLLSupervisor.cs" />

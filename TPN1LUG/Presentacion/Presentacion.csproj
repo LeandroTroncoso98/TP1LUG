@@ -118,6 +118,12 @@
     <Compile Include="FormEjercicio.Designer.cs">
       <DependentUpon>FormEjercicio.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormMaquinas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMaquinas.Designer.cs">
+      <DependentUpon>FormMaquinas.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormRutina.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -159,6 +165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEjercicio.resx">
       <DependentUpon>FormEjercicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMaquinas.resx">
+      <DependentUpon>FormMaquinas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormRutina.resx">
       <DependentUpon>FormRutina.cs</DependentUpon>

@@ -67,5 +67,12 @@ namespace Presentacion
             administrarRutina.MdiParent = this;
             administrarRutina.Show();
         }
+
+        private void maquinasXMLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormMaquinas frm = new FormMaquinas();
+            frm.MdiParent = this;
+            frm.Show();
+        }
     }
 }

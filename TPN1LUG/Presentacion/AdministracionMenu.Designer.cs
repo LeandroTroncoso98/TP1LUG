@@ -30,11 +30,11 @@ namespace Presentacion
         private void InitializeComponent()
         {
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
+            this.administrarSupervisoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.administrarProfesoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.administrarClientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.administrarClientesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.armarRutinaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.administrarSupervisoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarSesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lEmail = new System.Windows.Forms.Label();
@@ -42,6 +42,7 @@ namespace Presentacion
             this.lApellido = new System.Windows.Forms.Label();
             this.lnombre = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.maquinasXMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -53,12 +54,21 @@ namespace Presentacion
             this.administrarSupervisoresToolStripMenuItem,
             this.administrarProfesoresToolStripMenuItem,
             this.administrarClientesToolStripMenuItem,
+            this.maquinasXMLToolStripMenuItem,
             this.cerrarSesionToolStripMenuItem});
             this.menuStrip2.Location = new System.Drawing.Point(0, 56);
             this.menuStrip2.Name = "menuStrip2";
             this.menuStrip2.Size = new System.Drawing.Size(957, 24);
             this.menuStrip2.TabIndex = 0;
             this.menuStrip2.Text = "menuStrip1";
+            // 
+            // administrarSupervisoresToolStripMenuItem
+            // 
+            this.administrarSupervisoresToolStripMenuItem.ForeColor = System.Drawing.SystemColors.Window;
+            this.administrarSupervisoresToolStripMenuItem.Name = "administrarSupervisoresToolStripMenuItem";
+            this.administrarSupervisoresToolStripMenuItem.Size = new System.Drawing.Size(150, 20);
+            this.administrarSupervisoresToolStripMenuItem.Text = "Administrar Supervisores";
+            this.administrarSupervisoresToolStripMenuItem.Click += new System.EventHandler(this.administrarSupervisoresToolStripMenuItem_Click);
             // 
             // administrarProfesoresToolStripMenuItem
             // 
@@ -91,14 +101,6 @@ namespace Presentacion
             this.armarRutinaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.armarRutinaToolStripMenuItem.Text = "Armar Rutina";
             this.armarRutinaToolStripMenuItem.Click += new System.EventHandler(this.armarRutinaToolStripMenuItem_Click);
-            // 
-            // administrarSupervisoresToolStripMenuItem
-            // 
-            this.administrarSupervisoresToolStripMenuItem.ForeColor = System.Drawing.SystemColors.Window;
-            this.administrarSupervisoresToolStripMenuItem.Name = "administrarSupervisoresToolStripMenuItem";
-            this.administrarSupervisoresToolStripMenuItem.Size = new System.Drawing.Size(150, 20);
-            this.administrarSupervisoresToolStripMenuItem.Text = "Administrar Supervisores";
-            this.administrarSupervisoresToolStripMenuItem.Click += new System.EventHandler(this.administrarSupervisoresToolStripMenuItem_Click);
             // 
             // cerrarSesionToolStripMenuItem
             // 
@@ -169,6 +171,14 @@ namespace Presentacion
             this.label1.TabIndex = 0;
             this.label1.Text = "Bienvenido";
             // 
+            // maquinasXMLToolStripMenuItem
+            // 
+            this.maquinasXMLToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.maquinasXMLToolStripMenuItem.Name = "maquinasXMLToolStripMenuItem";
+            this.maquinasXMLToolStripMenuItem.Size = new System.Drawing.Size(106, 20);
+            this.maquinasXMLToolStripMenuItem.Text = "Maquinas (XML)";
+            this.maquinasXMLToolStripMenuItem.Click += new System.EventHandler(this.maquinasXMLToolStripMenuItem_Click);
+            // 
             // AdministracionMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -207,5 +217,6 @@ namespace Presentacion
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolStripMenuItem administrarClientesToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem armarRutinaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem maquinasXMLToolStripMenuItem;
     }
 }

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Maquinas>
+  <Maquina>
+    <Nombre>Disco 5kg</Nombre>
+    <Cantidad>30</Cantidad>
+    <MaximoPeso>5</MaximoPeso>
+  </Maquina>
+  <Maquina>
+    <Nombre>Disco 10kg</Nombre>
+    <Cantidad>50</Cantidad>
+    <MaximoPeso>10</MaximoPeso>
+  </Maquina>
+  <Maquina>
+    <Nombre>Barra olimpica</Nombre>
+    <Cantidad>5</Cantidad>
+    <MaximoPeso>200</MaximoPeso>
+  </Maquina>
+  <Maquina>
+    <Nombre>Barra hueca</Nombre>
+    <Cantidad>10</Cantidad>
+    <MaximoPeso>150</MaximoPeso>
+  </Maquina>
+</Maquinas>

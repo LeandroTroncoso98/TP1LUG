@@ -45,6 +45,7 @@
     <Compile Include="MPPDia.cs" />
     <Compile Include="MPPEjercicio.cs" />
     <Compile Include="MPPEmpleado.cs" />
+    <Compile Include="MPPMaquina.cs" />
     <Compile Include="MPPProfesor.cs" />
     <Compile Include="MPPRutina.cs" />
     <Compile Include="MPPSupervisor.cs" />

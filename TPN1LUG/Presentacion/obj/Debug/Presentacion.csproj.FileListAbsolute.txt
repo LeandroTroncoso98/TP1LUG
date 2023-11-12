@@ -93,3 +93,4 @@ C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Pra
 C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Presentacion\bin\Debug\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
 C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Presentacion\obj\Debug\RdlCompile.cache
 C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Presentacion\obj\Debug\RdlCompile.compiled
+C:\Users\herei\OneDrive\Escritorio\uai\Lenguaje de ultima generacion\Trabajo Practico N1\TP1LUG\TPN1LUG\Presentacion\obj\Debug\Presentacion.FormMaquinas.resources
